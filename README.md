@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/assets/logos/tailpyscss_logo_snake_wind.png" alt="TailPySCSS Logo" width="200"/>
+  <img src="https://raw.githubusercontent.com/tailpyscss2/tailpyscss-framework/main/docs/assets/logos/tailpyscss_logo_snake_wind.png" alt="TailPySCSS Logo" width="200"/>
 </p>
 
-# TailPySCSS v0.4.2
+# TailPySCSS v0.4.3
 
 ![PyPI - Version](https://img.shields.io/pypi/v/tailpyscss)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/tailpyscss)
@@ -133,9 +133,9 @@ config = {
 
 ## 📚 Documentation
 
-*   [**Class Reference**](Documentation.md): Valid list of all generated classes.
-*   [**Contributing Guide**](CONTRIBUTING.md): How to develop the framework itself.
-*   [**Security Policy**](SECURITY.md): Reporting vulnerabilities.
+*   [**Class Reference**](https://github.com/tailpyscss2/tailpyscss-framework/blob/main/docs/reference.md): Valid list of all generated classes.
+*   [**Contributing Guide**](https://github.com/tailpyscss2/tailpyscss-framework/blob/main/CONTRIBUTING.md): How to develop the framework itself.
+*   [**Security Policy**](https://github.com/tailpyscss2/tailpyscss-framework/blob/main/SECURITY.md): Reporting vulnerabilities.
 
 ---
 
