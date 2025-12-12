@@ -71,7 +71,7 @@ class PostInstallCommand(install):
 
 setup(
     name="tailpyscss",
-    version="0.4.1",
+    version="0.4.2",
     packages=find_packages(),
     install_requires=[
         "libsass>=0.22.0",
@@ -91,7 +91,7 @@ setup(
     description="A Python-native utility-first CSS generator and compiler.",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/tailpyscss-tech/tailpyscss-framework",
+    url="https://github.com/tailpyscss2/tailpyscss-framework",
     python_requires=">=3.8",
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -99,7 +99,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     project_urls={
-        "Source": "https://github.com/tailpyscss-tech/tailpyscss-framework",
+        "Source": "https://github.com/tailpyscss2/tailpyscss-framework",
     },
     keywords=[
         "css",

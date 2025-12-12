@@ -21,7 +21,7 @@ pip install tailpyscss
 ```
 
 ## Quick Links
-- [GitHub Repository](https://github.com/tailpyscss-tech/tailpyscss-framework)
+- [GitHub Repository](https://github.com/tailpyscss2/tailpyscss-framework)
 - [PyPI Package](https://pypi.org/project/tailpyscss/)
 
 ## Guide
