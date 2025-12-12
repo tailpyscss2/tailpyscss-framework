@@ -1,0 +1,18 @@
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Cache
+__pycache__/
+*.pyc
+
+# Environment (optional but good practice)
+venv/
+env/
+.env
+
+# TailPySCSS generated
+.tailpy.cache
+tailpy_config.py
+tailpyscss_theme.py

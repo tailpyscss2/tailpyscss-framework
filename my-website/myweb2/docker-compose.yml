@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      # Context must be 2 levels up to see the 'tailpyscss' library code
+      context: ../../
+      dockerfile: my-website/myweb/Dockerfile
+    volumes:
+      # Sync output CSS
+      - ./static/css:/app/my-website/myweb/static/css
+    ports:
+      - "8000:8000"

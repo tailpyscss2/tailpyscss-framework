@@ -1,0 +1,178 @@
+@import 'utilities';
+
+// --- Premium Design Refresh ---
+
+// Google Fonts Import (Inter)
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #f9fafb;
+    margin: 0; // Ensure no default margin
+}
+
+// Navbar
+.navbar {
+    @apply bg-white sticky top-0 z-50;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    width: 100%;
+
+    &__container {
+        @apply flex justify-between items-center px-6 py-4 mx-auto w-full;
+        max-width: 1200px;
+    }
+
+    &__logo {
+        @apply text-2xl font-black text-primary;
+        text-decoration: none;
+        letter-spacing: -0.05em;
+
+        // Gradient text effect (Manual CSS)
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block; // Fix for gradient text
+    }
+
+    &__links {
+        @apply flex gap-6;
+    }
+
+    &__link {
+        @apply text-base font-medium text-dark;
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover {
+            @apply text-primary;
+        }
+    }
+}
+
+.main {
+    @apply min-h-[85rem];
+}
+
+// Hero Section
+.hero {
+    @apply py-24 text-center relative;
+    @apply flex flex-col justify-center; // Full height + Vertical Center
+    background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%);
+    width: 100%;
+
+    &__content {
+        @apply mx-auto px-4;
+        max-width: 900px;
+        @apply w-full; // Ensure width
+    }
+
+    &__title {
+        @apply text-5xl font-black text-dark mb-6;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+    }
+
+    &__subtitle {
+        @apply text-xl text-dark mb-12 mx-auto;
+        max-width: 600px;
+        opacity: 0.7;
+    }
+
+    &__actions {
+        @apply flex gap-4 justify-center;
+    }
+}
+
+// Buttons
+.btn {
+    @apply py-3 px-8 font-bold rounded-lg box-border;
+    /* Added box-border */
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    transform: translateY(0);
+    display: inline-block;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    &--primary {
+        @apply text-white;
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+
+        &:hover {
+            // Ensure it stays white on hover
+            color: white;
+        }
+    }
+
+    &--secondary {
+        @apply bg-white text-dark;
+        border: 1px solid #e5e7eb;
+
+        &:hover {
+            border-color: #d1d5db;
+        }
+    }
+}
+
+// Features Section
+.features {
+    @apply py-24 bg-white;
+    width: 100%;
+
+    &__grid {
+        @apply grid grid-cols-3 gap-8 mx-auto px-6;
+        max-width: 1200px;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// Cards
+.card {
+    @apply p-8 h-full flex flex-col items-center text-center;
+    background-color: #ffffff;
+    border: 1px solid #f3f4f6;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: #bfdbfe; // light blue
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    &__title {
+        @apply text-2xl font-bold mb-4 text-dark;
+    }
+
+    &__text {
+        @apply text-base text-dark;
+        opacity: 0.8;
+        line-height: 1.6;
+    }
+}
+
+// Footer
+.footer {
+    @apply py-12 bg-white text-center border-light;
+    border-top: 1px solid #f3f4f6;
+    width: 100%;
+
+    &__text {
+        // We need a specific color here because @apply text-dark opacity 0.5 can be tricky if not careful
+        color: #6b7280;
+        font-size: 1.4rem;
+    }
+}

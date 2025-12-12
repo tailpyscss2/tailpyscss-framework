@@ -1,0 +1,9 @@
+@import "utilities";
+
+body {
+    @apply bg-dark text-light;
+}
+
+.btn-primary {
+    @apply bg-primary p-4 rounded text-white;
+}
