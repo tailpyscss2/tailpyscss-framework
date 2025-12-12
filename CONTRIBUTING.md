@@ -16,7 +16,7 @@ The core logic is located in `tailpyscss/generators/`. We use an OOP approach:
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/tailpyscss.git
+    git clone https://github.com/tailpyscss2/tailpyscss-framework.git
     cd tailpyscss
     ```
 

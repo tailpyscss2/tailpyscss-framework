@@ -2,12 +2,12 @@
   <img src="docs/assets/logos/tailpyscss_logo_snake_wind.png" alt="TailPySCSS Logo" width="200"/>
 </p>
 
-# TailPySCSS v0.4.1
+# TailPySCSS v0.4.2
 
 ![PyPI - Version](https://img.shields.io/pypi/v/tailpyscss)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/tailpyscss)
-![License](https://img.shields.io/github/license/tailpyscss-tech/tailpyscss-framework)
-![Build Status](https://img.shields.io/github/actions/workflow/status/tailpyscss-tech/tailpyscss-framework/python-package.yml)
+![License](https://img.shields.io/github/license/tailpyscss2/tailpyscss-framework)
+![Build Status](https://img.shields.io/github/actions/workflow/status/tailpyscss2/tailpyscss-framework/python-package.yml)
 
 **The Python-Native Utility CSS Engine for Clean HTML**
 
