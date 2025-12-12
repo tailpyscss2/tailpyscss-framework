@@ -1,0 +1,9 @@
+@import "components/utilities";
+@import "components/navbar";
+@import "components/sidebar";
+@import "components/content";
+@import "components/footer";
+
+body {
+    @apply bg-light text-dark font-sans leading-normal;
+}

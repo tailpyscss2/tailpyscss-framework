@@ -1,0 +1,7 @@
+.doc-layout {
+    @apply container mx-auto p-6 md:flex gap-8 mt-6;
+}
+
+.content {
+    @apply w-full bg-white p-8 rounded-lg shadow-md prose max-w-none;
+}

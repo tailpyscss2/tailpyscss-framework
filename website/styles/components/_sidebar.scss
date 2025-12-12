@@ -1,0 +1,19 @@
+.sidebar {
+    @apply hidden md:block w-64 flex-none sticky top-24 h-screen overflow-y-auto;
+
+    &__title {
+        @apply font-bold text-lg mb-4 text-primary;
+    }
+
+    &__list {
+        @apply space-y-2;
+    }
+
+    &__item {
+        @apply block p-2 rounded hover:bg-white;
+
+        &--active {
+            @apply bg-white text-primary font-bold shadow;
+        }
+    }
+}
