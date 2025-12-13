@@ -6,6 +6,10 @@ class LayoutGenerator(UtilityGenerator):
         scss = []
         scss.append("// Layout (Flex, Grid, Sizing)")
         
+        # --- Container ---
+        # Basic implementation of container
+        scss.append(".container { width: 100%; margin-left: auto; margin-right: auto; max-width: 1280px; }")
+        
         # --- Display ---
         displays = ["block", "inline-block", "inline", "flex", "inline-flex", "hidden", "grid"]
         for d in displays:
@@ -69,9 +73,12 @@ class LayoutGenerator(UtilityGenerator):
             "1/4": "25%", "3/4": "75%"
         }
         for name, value in widths.items():
-            # Escape slash for class names like w-1/2 -> .w-1\/2
             safe_name = name.replace("/", "\\/")
             scss.append(f".w-{safe_name} {{ width: {value}; }}")
+            
+        # Fixed Widths (Spacing)
+        for name, value in spacing.items():
+             scss.append(f".w-{name} {{ width: {value}; }}")
 
         # Height
         heights = {
@@ -79,8 +86,9 @@ class LayoutGenerator(UtilityGenerator):
         }
         for name, value in heights.items():
              scss.append(f".h-{name} {{ height: {value}; }}")
-
-        for name, value in heights.items():
+             
+        # Fixed Heights (Spacing)
+        for name, value in spacing.items():
              scss.append(f".h-{name} {{ height: {value}; }}")
              
         # Min/Max Height
@@ -93,18 +101,14 @@ class LayoutGenerator(UtilityGenerator):
         for pos in positions:
             scss.append(f".{pos} {{ position: {pos}; }}")
             
-        for pos in positions:
-            scss.append(f".{pos} {{ position: {pos}; }}")
-        
         # Position Offsets (top, right, bottom, left)
-        # Using spacing config + 0
         offsets = ["top", "right", "bottom", "left"]
         scss.append(f".top-0 {{ top: 0px; }}")
         scss.append(f".right-0 {{ right: 0px; }}")
         scss.append(f".bottom-0 {{ bottom: 0px; }}")
         scss.append(f".left-0 {{ left: 0px; }}")
         
-        # Add spacing offsets if needed, e.g. top-4
+        # Add spacing offsets
         for name, value in spacing.items():
             for side in offsets:
                 scss.append(f".{side}-{name} {{ {side}: {value}; }}")

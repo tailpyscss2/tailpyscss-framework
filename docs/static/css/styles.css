@@ -749,6 +749,13 @@ body {
   line-height: 2;
 }
 
+.container, .doc-layout, .navbar__container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+}
+
 .block, .sidebar__item {
   display: block;
 }
@@ -1037,6 +1044,34 @@ body {
   width: 75%;
 }
 
+.w-0 {
+  width: 0px;
+}
+
+.w-1 {
+  width: 0.25rem;
+}
+
+.w-2 {
+  width: 0.5rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-8, .navbar__logo {
+  width: 2rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
 .h-full {
   height: 100%;
 }
@@ -1053,20 +1088,32 @@ body {
   height: max-content;
 }
 
-.h-full {
-  height: 100%;
+.h-0 {
+  height: 0px;
 }
 
-.h-screen, .sidebar {
-  height: 100vh;
+.h-1 {
+  height: 0.25rem;
 }
 
-.h-min {
-  height: min-content;
+.h-2 {
+  height: 0.5rem;
 }
 
-.h-max {
-  height: max-content;
+.h-4 {
+  height: 1rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-8, .navbar__logo {
+  height: 2rem;
+}
+
+.h-12 {
+  height: 3rem;
 }
 
 .min-h-full {
@@ -1099,26 +1146,6 @@ body {
 
 .max-h-max {
   max-height: max-content;
-}
-
-.static {
-  position: static;
-}
-
-.fixed {
-  position: fixed;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.sticky, .sidebar, .navbar {
-  position: sticky;
 }
 
 .static {

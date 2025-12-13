@@ -365,3 +365,85 @@ body { font-family: sans-serif; font-size: 1.6rem; }
 .opacity-80 { opacity: 0.8; }
 .opacity-90 { opacity: 0.9; }
 .opacity-100 { opacity: 1.0; }
+
+
+.navbar {
+    @extend .bg-dark !optional; @extend .text-white !optional; @extend .p-4 !optional; @extend .shadow-lg !optional; @extend .sticky !optional; @extend .top-0 !optional; @extend .z-50 !optional;
+
+    &__container {
+        @extend .container !optional; @extend .mx-auto !optional; @extend .flex !optional; @extend .justify-between !optional; @extend .items-center !optional;
+    }
+
+    &__brand {
+        @extend .text-2xl !optional; @extend .font-bold !optional; @extend .flex !optional; @extend .items-center !optional; @extend .gap-2 !optional;
+    }
+
+    &__logo {
+        @extend .h-8 !optional; @extend .w-8 !optional;
+    }
+
+    &__links {
+        @extend .hidden !optional; @extend .md\:flex !optional; @extend .gap-6 !optional;
+    }
+
+    &__link {
+        @extend .hover\:text-primary !optional; @extend .transition-colors !optional;
+
+        &--github {
+            @extend .bg-primary !optional; @extend .px-4 !optional; @extend .py-2 !optional; @extend .rounded !optional; @extend .hover\:bg-secondary !optional; @extend .font-bold !optional;
+        }
+    }
+}
+
+.sidebar {
+    @extend .hidden !optional; @extend .md\:block !optional; @extend .w-64 !optional; @extend .flex-none !optional; @extend .sticky !optional; @extend .top-24 !optional; @extend .h-screen !optional; @extend .overflow-y-auto !optional;
+
+    &__title {
+        @extend .font-bold !optional; @extend .text-lg !optional; @extend .mb-4 !optional; @extend .text-primary !optional;
+    }
+
+    &__list {
+        @extend .space-y-2 !optional;
+    }
+
+    &__item {
+        @extend .block !optional; @extend .p-2 !optional; @extend .rounded !optional; @extend .hover\:bg-white !optional;
+
+        &--active {
+            @extend .bg-white !optional; @extend .text-primary !optional; @extend .font-bold !optional; @extend .shadow !optional;
+        }
+    }
+}
+
+.doc-layout {
+    @extend .container !optional; @extend .mx-auto !optional; @extend .p-6 !optional; @extend .md\:flex !optional; @extend .gap-8 !optional; @extend .mt-6 !optional;
+}
+
+.content {
+    @extend .w-full !optional; @extend .bg-white !optional; @extend .p-8 !optional; @extend .rounded-lg !optional; @extend .shadow-md !optional; @extend .prose !optional; @extend .max-w-none !optional;
+}
+
+.footer {
+    @extend .bg-dark !optional; @extend .text-white !optional; @extend .p-8 !optional; @extend .mt-12 !optional; @extend .text-center !optional; @extend .text-sm !optional; @extend .opacity-80 !optional;
+}
+
+
+// Responsive Polyfills (Temporary until ScreensGenerator)
+@media (min-width: 768px) {
+    .md\:flex {
+        display: flex !important;
+    }
+
+    .md\:hidden {
+        display: none !important;
+    }
+
+    .md\:block {
+        display: block !important;
+    }
+}
+
+
+body {
+    @extend .bg-light !optional; @extend .text-dark !optional; @extend .font-sans !optional; @extend .leading-normal !optional;
+}
