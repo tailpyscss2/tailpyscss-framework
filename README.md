@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/tailpyscss2/tailpyscss-framework/main/docs/assets/logos/tailpyscss_logo_snake_wind.png" alt="TailPySCSS Logo" width="200"/>
 </p>
 
-# TailPySCSS v0.4.6
+# TailPySCSS v0.4.7
 
 ![PyPI - Version](https://img.shields.io/pypi/v/tailpyscss)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/tailpyscss)
