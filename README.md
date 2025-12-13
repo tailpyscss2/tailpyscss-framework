@@ -109,6 +109,24 @@ The main objective of TailPySCSS is to separate structure (HTML) from implementa
 }
 ```
 
+### 5. Modular SCSS (New in v0.4.5)
+You are not limited to `main.scss`. You can create as many SCSS files as you like (e.g., `styles/components/_card.scss`) and import them.
+
+**`styles/main.scss`:**
+```scss
+@import "utilities";
+@import "components/card"; 
+// ^ The framework will automatically process @apply inside your imports!
+```
+
+**`styles/components/_card.scss`:**
+```scss
+.card {
+     @apply bg-white p-6 rounded shadow;
+}
+```
+
+
 ---
 
 ## ⚙️ Configuration (`tailpy_config.py`)
