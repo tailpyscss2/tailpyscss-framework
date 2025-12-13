@@ -41,5 +41,17 @@ class TypographyGenerator(UtilityGenerator):
         scss.append(".text-center { text-align: center; }")
         scss.append(".text-right { text-align: right; }")
         scss.append(".text-justify { text-align: justify; }")
+
+        # Line Height (Leading)
+        line_heights = {
+            "none": "1",
+            "tight": "1.25",
+            "snug": "1.375",
+            "normal": "1.5",
+            "relaxed": "1.625",
+            "loose": "2"
+        }
+        for name, value in line_heights.items():
+            scss.append(f".leading-{name} {{ line-height: {value}; }}")
         
         return "\n".join(scss)

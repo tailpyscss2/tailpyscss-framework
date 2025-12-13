@@ -1,8 +1,24 @@
-@import "components/utilities";
+@import "utilities";
 @import "components/navbar";
 @import "components/sidebar";
 @import "components/content";
 @import "components/footer";
+
+// Responsive Polyfills (Temporary until ScreensGenerator)
+@media (min-width: 768px) {
+    .md\:flex {
+        display: flex !important;
+    }
+
+    .md\:hidden {
+        display: none !important;
+    }
+
+    .md\:block {
+        display: block !important;
+    }
+}
+
 
 body {
     @apply bg-light text-dark font-sans leading-normal;

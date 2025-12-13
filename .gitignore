@@ -16,3 +16,12 @@ env/
 .tailpy.cache
 tailpy_config.py
 tailpyscss_theme.py
+
+# Exceptions (Track Docs Config)
+!website/tailpy_config.py
+
+# Garbage / Scratch
+my-website/
+*.log
+debug_*.py
+debug_*.txt

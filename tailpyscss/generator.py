@@ -3,6 +3,7 @@ from .generators.spacing import SpacingGenerator
 from .generators.typography import TypographyGenerator
 from .generators.layout import LayoutGenerator
 from .generators.borders import BordersGenerator
+from .generators.effects import EffectsGenerator
 
 def generate_utilities(config):
     """Generate SCSS utilities based on configuration using OOP generators."""
@@ -17,7 +18,8 @@ def generate_utilities(config):
         SpacingGenerator,
         TypographyGenerator,
         LayoutGenerator,
-        BordersGenerator
+        BordersGenerator,
+        EffectsGenerator
     ]
 
     for gen_class in generator_classes:

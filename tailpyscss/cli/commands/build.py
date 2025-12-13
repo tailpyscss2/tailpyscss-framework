@@ -1,4 +1,5 @@
 import sys
+import os
 from tailpyscss.generator import generate_utilities
 from tailpyscss.builder import compile_scss
 from tailpyscss.cli.core.config import load_config
@@ -17,7 +18,7 @@ def build_project(watch_mode=False, last_hash=None):
         else:
             cached_hash = load_cache()
 
-        if cached_hash != current_hash:
+        if cached_hash != current_hash or not os.path.exists("styles/_utilities.scss"):
             if watch_mode and cached_hash is not None:
                 print("Config changed. Regenerating utilities...")
             # elif not watch_mode:

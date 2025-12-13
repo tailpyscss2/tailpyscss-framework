@@ -4,14 +4,56 @@ import re
 
 def compile_scss(input_path, output_path):
     """
-    Compile SCSS to CSS using libsass with @apply support.
-    Uses a custom importer to recursively process @apply in all imported files.
+    Compile SCSS to CSS using libsass with full @apply and @import support.
+    Uses a manual preprocessor to recursively resolve imports and inline content.
     """
     
     if not os.path.exists(input_path):
         raise FileNotFoundError(f"Input file not found: {input_path}")
 
-    # --- 1. The Magic Replacer (Shared Logic) ---
+    # --- 1. Recursive Import Resolver ---
+    def resolve_imports(content, base_dir):
+        """
+        recursively find @import and replace with file content.
+        This ensures we have one giant SCSS string for @apply and @extend to work.
+        """
+        def import_replacer(match):
+            import_path = match.group(2).strip().strip("'").strip('"')
+            
+            # Skip css imports (http/url)
+            if import_path.startswith("http") or "url(" in import_path or import_path.endswith(".css"):
+                return match.group(0)
+
+            # Try finding the file
+            candidates = [
+                os.path.join(base_dir, import_path),
+                os.path.join(base_dir, import_path + ".scss"),
+                os.path.join(base_dir, "_" + import_path + ".scss"),
+                # Handle subdirectories e.g. components/card
+                os.path.join(base_dir, os.path.dirname(import_path), "_" + os.path.basename(import_path) + ".scss") 
+            ]
+            
+            target_file = None
+            for c in candidates:
+                if os.path.exists(c):
+                    target_file = c
+                    break
+            
+            if target_file:
+                with open(target_file, 'r', encoding='utf-8') as f:
+                    file_content = f.read()
+                # print(f"DEBUG: Reading {target_file} ({len(file_content)} bytes)")
+                
+                # Recursively resolve imports in the new file
+                return resolve_imports(file_content, os.path.dirname(target_file)) + "\n"
+            else:
+                # If not found, leave it for libsass to error or handle
+                return match.group(0)
+
+        # Regex for @import "path"; or @import 'path';
+        return re.sub(r'@import\s+("|\')(.*?)("|\');', import_replacer, content)
+
+    # --- 2. The Magic Replacer (@apply) ---
     def process_apply_directives(scss_content):
         def apply_replacer(match):
             content = match.group(1).strip()
@@ -43,56 +85,31 @@ def compile_scss(input_path, output_path):
                             output_parts.append(f"{prop}: {final_value};")
                 else:
                     safe_c = c.replace(":", "\\:")
-                    output_parts.append(f"@extend .{safe_c};")
+                    output_parts.append(f"@extend .{safe_c} !optional;")
                     
             return " ".join(output_parts)
 
         return re.sub(r'@apply\s+(.*?);', apply_replacer, scss_content, flags=re.DOTALL)
 
-    # --- 2. Custom Importer ---
-    # Intercepts @import to run the replacer on every file
-    def tailpy_importer(path, prev):
-        # Resolve path relative to previous file or input file
-        base_dir = os.path.dirname(prev) if prev != "stdin" else os.path.dirname(input_path)
-        
-        # Try finding the file (handling _partial.scss convention)
-        candidates = [
-            os.path.join(base_dir, path),
-            os.path.join(base_dir, path + ".scss"),
-            os.path.join(base_dir, "_" + path + ".scss")
-        ]
-        
-        target_file = None
-        for c in candidates:
-            if os.path.exists(c):
-                target_file = c
-                break
-        
-        if not target_file:
-            return None # Let libsass handle error
-
-        with open(target_file, 'r', encoding='utf-8') as f:
-            raw_content = f.read()
-        
-        # PROCESS THE CONTENT
-        processed_content = process_apply_directives(raw_content)
-        
-        # Return fully resolved path to help libsass track subsequent imports
-        return [(target_file, processed_content)]
-
-    # --- 3. Compile ---
-    # We must read the entry file manually first
-    with open(input_path, 'r') as f:
-        entry_content = f.read()
+    # --- 3. Execution ---
+    with open(input_path, 'r', encoding='utf-8') as f:
+        root_content = f.read()
     
-    processed_entry = process_apply_directives(entry_content)
+    # Step A: Inline all imports (Recursive)
+    unified_scss = resolve_imports(root_content, os.path.dirname(input_path))
+    
+    # Step B: Process @apply on the unified content
+    # This ensures @extend finds the classes defined in previously imported chunks
+    processed_scss = process_apply_directives(unified_scss)
+    
+    with open("debug_processed.scss", "w", encoding="utf-8") as f:
+        f.write(processed_scss)
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
     try:
         css = sass.compile(
-            string=processed_entry,
-            importers=[(0, tailpy_importer)], # Priority 0
+            string=processed_scss,
             include_paths=[os.path.dirname(input_path)],
             output_style='expanded'
         )
