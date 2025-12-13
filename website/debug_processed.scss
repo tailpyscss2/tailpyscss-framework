@@ -368,14 +368,24 @@ body { font-family: sans-serif; font-size: 1.6rem; }
 
 
 .navbar {
-    @extend .bg-dark !optional; @extend .text-white !optional; @extend .p-4 !optional; @extend .shadow-lg !optional; @extend .sticky !optional; @extend .top-0 !optional; @extend .z-50 !optional;
+    @extend .text-white !optional; @extend .p-4 !optional; @extend .shadow-lg !optional; @extend .sticky !optional; @extend .top-0 !optional; @extend .z-50 !optional;
+
+    // Glassmorphism Manual Override (since framework doesn't have backdrop-blur yet)
+    background-color: rgba(30, 41, 59, 0.85); // dark with opacity
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
     &__container {
         @extend .container !optional; @extend .mx-auto !optional; @extend .flex !optional; @extend .justify-between !optional; @extend .items-center !optional;
     }
 
     &__brand {
-        @extend .text-2xl !optional; @extend .font-bold !optional; @extend .flex !optional; @extend .items-center !optional; @extend .gap-2 !optional;
+        @extend .text-2xl !optional; @extend .font-bold !optional; @extend .flex !optional; @extend .items-center !optional; @extend .gap-2 !optional; @extend .text-white !optional;
+        text-decoration: none;
+
+        &:hover {
+            @extend .text-primary !optional; @extend .transition-colors !optional;
+        }
     }
 
     &__logo {
@@ -383,14 +393,27 @@ body { font-family: sans-serif; font-size: 1.6rem; }
     }
 
     &__links {
-        @extend .hidden !optional; @extend .md\:flex !optional; @extend .gap-6 !optional;
+        @extend .hidden !optional; @extend .md\:flex !optional; @extend .gap-8 !optional; @extend .items-center !optional; // Increased gap
     }
 
     &__link {
-        @extend .hover\:text-primary !optional; @extend .transition-colors !optional;
+        @extend .font-medium !optional; @extend .text-gray !optional; @extend .transition-colors !optional; @extend .text-base !optional;
+        color: #94a3b8; // slate-400
+        text-decoration: none;
+
+        &:hover {
+            @extend .text-white !optional;
+            color: #ffffff;
+        }
 
         &--github {
-            @extend .bg-primary !optional; @extend .px-4 !optional; @extend .py-2 !optional; @extend .rounded !optional; @extend .hover\:bg-secondary !optional; @extend .font-bold !optional;
+            @extend .bg-primary !optional; @extend .px-6 !optional; @extend .py-2 !optional; @extend .rounded-full !optional; @extend .hover\:bg-secondary !optional; @extend .font-bold !optional; @extend .text-white !optional; @extend .shadow-lg !optional;
+            transition: all 0.2s ease;
+
+            &:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5); // primary glow
+            }
         }
     }
 }
@@ -420,7 +443,82 @@ body { font-family: sans-serif; font-size: 1.6rem; }
 }
 
 .content {
-    @extend .w-full !optional; @extend .bg-white !optional; @extend .p-8 !optional; @extend .rounded-lg !optional; @extend .shadow-md !optional; @extend .prose !optional; @extend .max-w-none !optional;
+    @extend .w-full !optional; @extend .bg-white !optional; @extend .p-8 !optional; @extend .rounded-lg !optional; @extend .shadow-md !optional; @extend .max-w-none !optional;
+
+    // Typography & Prose Styles
+    h1 {
+        @extend .text-4xl !optional; @extend .font-bold !optional; @extend .mb-6 !optional; @extend .text-dark !optional; @extend .border-b-2 !optional; @extend .border-primary !optional; @extend .pb-2 !optional;
+    }
+
+    h2 {
+        @extend .text-2xl !optional; @extend .font-bold !optional; @extend .mt-8 !optional; @extend .mb-4 !optional; @extend .text-dark !optional;
+    }
+
+    h3 {
+        @extend .text-xl !optional; @extend .font-bold !optional; @extend .mt-6 !optional; @extend .mb-3 !optional; @extend .text-secondary !optional;
+    }
+
+    p {
+        @extend .mb-4 !optional; @extend .leading-relaxed !optional; @extend .text-base !optional;
+        color: #334155; // slate-700
+    }
+
+    ul,
+    ol {
+        @extend .mb-4 !optional; @extend .ml-6 !optional;
+        list-style-type: disc;
+    }
+
+    li {
+        @extend .mb-2 !optional;
+    }
+
+    a {
+        @extend .text-primary !optional; @extend .font-medium !optional;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    // Tables
+    table {
+        @extend .w-full !optional; @extend .mb-8 !optional; @extend .border-collapse !optional;
+        margin-top: 1rem;
+    }
+
+    th {
+        @extend .text-left !optional; @extend .p-3 !optional; @extend .font-bold !optional; @extend .bg-gray-100 !optional; @extend .text-dark !optional; @extend .border-b-2 !optional; @extend .border-gray-200 !optional;
+        background-color: #f1f5f9; // slate-100
+    }
+
+    td {
+        @extend .p-3 !optional; @extend .border-b !optional; @extend .border-gray-200 !optional; @extend .text-sm !optional;
+    }
+
+    tr:hover td {
+        background-color: #f8fafc; // slate-50
+    }
+
+    // Code Blocks
+    pre {
+        @extend .bg-dark !optional; @extend .text-white !optional; @extend .p-4 !optional; @extend .rounded-lg !optional; @extend .mb-6 !optional; @extend .overflow-x-auto !optional; @extend .shadow-inner !optional;
+        background-color: #1e293b;
+    }
+
+    code {
+        @extend .font-mono !optional; @extend .text-sm !optional;
+    }
+
+    // Inline Code
+    p code,
+    li code,
+    td code {
+        @extend .px-1 !optional; @extend .py-0.5 !optional; @extend .rounded !optional; @extend .text-primary !optional; @extend .font-bold !optional; @extend .bg-gray-100 !optional;
+        background-color: #f1f5f9;
+        font-size: 0.9em;
+    }
 }
 
 .footer {

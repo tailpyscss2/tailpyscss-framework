@@ -3,5 +3,80 @@
 }
 
 .content {
-    @apply w-full bg-white p-8 rounded-lg shadow-md prose max-w-none;
+    @apply w-full bg-white p-8 rounded-lg shadow-md max-w-none;
+
+    // Typography & Prose Styles
+    h1 {
+        @apply text-4xl font-bold mb-6 text-dark border-b-2 border-primary pb-2;
+    }
+
+    h2 {
+        @apply text-2xl font-bold mt-8 mb-4 text-dark;
+    }
+
+    h3 {
+        @apply text-xl font-bold mt-6 mb-3 text-secondary;
+    }
+
+    p {
+        @apply mb-4 leading-relaxed text-base;
+        color: #334155; // slate-700
+    }
+
+    ul,
+    ol {
+        @apply mb-4 ml-6;
+        list-style-type: disc;
+    }
+
+    li {
+        @apply mb-2;
+    }
+
+    a {
+        @apply text-primary font-medium;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    // Tables
+    table {
+        @apply w-full mb-8 border-collapse;
+        margin-top: 1rem;
+    }
+
+    th {
+        @apply text-left p-3 font-bold bg-gray-100 text-dark border-b-2 border-gray-200;
+        background-color: #f1f5f9; // slate-100
+    }
+
+    td {
+        @apply p-3 border-b border-gray-200 text-sm;
+    }
+
+    tr:hover td {
+        background-color: #f8fafc; // slate-50
+    }
+
+    // Code Blocks
+    pre {
+        @apply bg-dark text-white p-4 rounded-lg mb-6 overflow-x-auto shadow-inner;
+        background-color: #1e293b;
+    }
+
+    code {
+        @apply font-mono text-sm;
+    }
+
+    // Inline Code
+    p code,
+    li code,
+    td code {
+        @apply px-1 py-0.5 rounded text-primary font-bold bg-gray-100;
+        background-color: #f1f5f9;
+        font-size: 0.9em;
+    }
 }

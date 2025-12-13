@@ -1,12 +1,22 @@
 .navbar {
-    @apply bg-dark text-white p-4 shadow-lg sticky top-0 z-50;
+    @apply text-white p-4 shadow-lg sticky top-0 z-50;
+
+    // Glassmorphism Manual Override (since framework doesn't have backdrop-blur yet)
+    background-color: rgba(30, 41, 59, 0.85); // dark with opacity
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
     &__container {
         @apply container mx-auto flex justify-between items-center;
     }
 
     &__brand {
-        @apply text-2xl font-bold flex items-center gap-2;
+        @apply text-2xl font-bold flex items-center gap-2 text-white;
+        text-decoration: none;
+
+        &:hover {
+            @apply text-primary transition-colors;
+        }
     }
 
     &__logo {
@@ -14,14 +24,27 @@
     }
 
     &__links {
-        @apply hidden md:flex gap-6;
+        @apply hidden md:flex gap-8 items-center; // Increased gap
     }
 
     &__link {
-        @apply hover:text-primary transition-colors;
+        @apply font-medium text-gray transition-colors text-base;
+        color: #94a3b8; // slate-400
+        text-decoration: none;
+
+        &:hover {
+            @apply text-white;
+            color: #ffffff;
+        }
 
         &--github {
-            @apply bg-primary px-4 py-2 rounded hover:bg-secondary font-bold;
+            @apply bg-primary px-6 py-2 rounded-full hover:bg-secondary font-bold text-white shadow-lg;
+            transition: all 0.2s ease;
+
+            &:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5); // primary glow
+            }
         }
     }
 }
