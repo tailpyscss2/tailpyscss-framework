@@ -18,9 +18,16 @@ jobs:
       name: pypi
       url: https://pypi.org/p/tailpyscss
     permissions:
-      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+      contents: write  # Required to create the GitHub Release
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        generate_release_notes: true
+
     
     - name: Set up Python
       uses: actions/setup-python@v4
