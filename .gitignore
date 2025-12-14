@@ -19,6 +19,8 @@ tailpyscss_theme.py
 
 # Exceptions (Track Docs Config)
 !website/tailpy_config.py
+ACC/
+TD/
 
 # Garbage / Scratch
 my-website/

@@ -4,10 +4,11 @@
 
 # TailPySCSS v0.4.7
 
-![PyPI - Version](https://img.shields.io/pypi/v/tailpyscss)
+[![Analysis & Tests](https://github.com/tailpyscss2/tailpyscss-framework/actions/workflows/main.yml/badge.svg)](https://github.com/tailpyscss2/tailpyscss-framework/actions/workflows/main.yml)
+[![PyPI - Version](https://img.shields.io/pypi/v/tailpyscss)](https://pypi.org/project/tailpyscss/)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/tailpyscss)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tailpyscss)
 ![License](https://img.shields.io/github/license/tailpyscss2/tailpyscss-framework)
-![Build Status](https://img.shields.io/github/actions/workflow/status/tailpyscss2/tailpyscss-framework/python-package.yml)
 
 **The Python-Native Utility CSS Engine for Clean HTML**
 
