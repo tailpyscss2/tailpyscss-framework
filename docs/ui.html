@@ -14,17 +14,22 @@
     <style>
         .preview-box {
             border: 1px solid #e5e7eb;
-            background-color: #f9fafb;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
+            background-color: #ffffff;
+            /* Clean white background */
+            padding: 3rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Subtle checkerboard for transparency checks */
-            background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+            /* Very subtle inner shadow */
+        }
+
+        /* Dogfooding: Enhance specificity override for docs presentation if needed */
+        [ui="card"] {
+            max-width: 400px;
+            width: 100%;
         }
     </style>
 </head>
@@ -66,9 +71,11 @@
         <!-- Content Area -->
         <main class="content">
             <h1>Component Library 📦</h1>
-            <p>TailPySCSS v0.5 includes a comprehensive suite of 30+ components. Below are live visual previews.</p>
+            <p>TailPySCSS v0.5.1 includes a comprehensive suite of 30+ components. Below are live visual previews using
+                the actual framework logic.</p>
 
-            <p><strong>Note:</strong> All components are available via <code>from tailpyscss.ui import ...</code></p>
+            <p class="mb-8"><strong>Dogfooding Note:</strong> The previews below use the exact same HTML attributes
+                (<code>ui="..."</code>) that the Python engine generates.</p>
 
             <hr>
 
@@ -78,18 +85,18 @@
             <div class="component-block">
                 <h3>Card</h3>
                 <p>A flexible container with shadow, padding, and rounded corners.</p>
-                <!-- PREVIEW -->
+                <!-- PREVIEW: Using ui="card" directly (Dog Food) -->
                 <div class="preview-box">
-                    <div class="tp-card shadow-lg p-6 bg-white rounded-xl" style="max-width:300px;">
+                    <div ui="card">
                         <h4 class="text-xl font-bold mb-2">Card Title</h4>
-                        <p class="text-gray-600 mb-4">This is card content. It looks amazing.</p>
-                        <button class="tp-btn tp-btn-primary">Click Me</button>
+                        <p class="text-gray-600 mb-4">This is a card. It uses <code>ui="card"</code>.</p>
+                        <button ui="button" class="tp-btn-primary">Action</button>
                     </div>
                 </div>
                 <pre><code class="language-python">Card(
     children=[
-        "This is card content",
-        Button("Click Me")
+        "This is a card...",
+        Button("Action")
     ]
 )</code></pre>
             </div>
@@ -100,12 +107,12 @@
                 <!-- PREVIEW -->
                 <div class="preview-box">
                     <div class="flex gap-4">
-                        <button class="tp-btn tp-btn-primary">Primary</button>
-                        <button class="tp-btn tp-btn-secondary">Secondary</button>
-                        <button class="tp-btn" style="background:#ef4444; color:white;">Danger</button>
+                        <button ui="button" class="tp-btn-primary">Primary</button>
+                        <button ui="button" class="tp-btn-secondary">Secondary</button>
+                        <button ui="button" style="border-color:#ef4444; color:#ef4444;">Danger</button>
                     </div>
                 </div>
-                <pre><code class="language-python">Button("Submit", type="submit")</code></pre>
+                <pre><code class="language-python">Button("Primary", class_="tp-btn-primary")</code></pre>
             </div>
 
             <div class="component-block">
@@ -114,9 +121,9 @@
                 <!-- PREVIEW -->
                 <div class="preview-box">
                     <div class="flex gap-2">
-                        <span class="tp-badge tp-badge-primary">New</span>
-                        <span class="tp-badge tp-badge-secondary">Beta</span>
-                        <span class="tp-badge bg-green-100 text-green-800">Success</span>
+                        <span ui="badge" class="tp-badge-primary">New</span>
+                        <span ui="badge">Default</span>
+                        <span ui="badge" style="background:#dcfce7; color:#166534; border:none;">Success</span>
                     </div>
                 </div>
                 <pre><code class="language-python">Badge("New")</code></pre>
@@ -127,7 +134,7 @@
                 <p>Contextual feedback message.</p>
                 <!-- PREVIEW -->
                 <div class="preview-box w-full">
-                    <div class="tp-alert tp-alert-success border-l-4 border-green-500 bg-green-50 p-4 w-full">
+                    <div ui="alert" class="border-l-4 border-green-500 bg-green-50">
                         <p class="text-green-700">Payment Successful! Your order has been processed.</p>
                     </div>
                 </div>
@@ -139,7 +146,7 @@
                 <p>Top navigation header.</p>
                 <!-- PREVIEW -->
                 <div class="preview-box" style="padding:0; background:none;">
-                    <nav class="tp-navbar bg-white shadow p-4 w-full flex justify-between items-center rounded-lg">
+                    <nav ui="navbar" class="bg-white shadow p-4 w-full flex justify-between items-center rounded-lg">
                         <a href="#" class="font-bold text-xl">Brand</a>
                         <div class="flex gap-4">
                             <a href="#" class="text-gray-600 hover:text-blue-500">Home</a>
@@ -162,7 +169,7 @@
                 <h3>Input</h3>
                 <!-- PREVIEW -->
                 <div class="preview-box">
-                    <input type="text" class="tp-input border p-2 rounded w-64" placeholder="email@example.com">
+                    <input ui="input" type="text" placeholder="email@example.com">
                 </div>
                 <pre><code class="language-python">Input(placeholder="email@example.com")</code></pre>
             </div>
@@ -172,7 +179,7 @@
                 <p>Toggle switch (prettier checkbox).</p>
                 <!-- PREVIEW -->
                 <div class="preview-box">
-                    <label class="tp-switch flex items-center cursor-pointer">
+                    <label ui="switch">
                         <div class="relative">
                             <input type="checkbox" class="sr-only" checked>
                             <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
@@ -180,7 +187,7 @@
                                 class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition transform translate-x-6">
                             </div>
                         </div>
-                        <div class="ml-3 text-gray-700 font-medium">Enable Dark Mode</div>
+                        <span class="ml-3 font-medium">Enable Dark Mode</span>
                     </label>
                 </div>
                 <pre><code class="language-python">Switch(label="Enable Dark Mode")</code></pre>
@@ -196,17 +203,10 @@
                 <h3>Tabs</h3>
                 <!-- PREVIEW -->
                 <div class="preview-box">
-                    <div class="tp-tabs border-b">
-                        <ul class="flex">
-                            <li class="mr-1"><a
-                                    class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold"
-                                    href="#">Profile</a></li>
-                            <li class="mr-1"><a
-                                    class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
-                                    href="#">Settings</a></li>
-                            <li class="mr-1"><a class="bg-white inline-block py-2 px-4 text-gray-400 font-semibold"
-                                    href="#">Billing</a></li>
-                        </ul>
+                    <div ui="tabs">
+                        <button class="active">Profile</button>
+                        <button>Settings</button>
+                        <button>Billing</button>
                     </div>
                 </div>
                 <pre><code class="language-python">Tabs("Profile", "Settings", "Billing")</code></pre>
