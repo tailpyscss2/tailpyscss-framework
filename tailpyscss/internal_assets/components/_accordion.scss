@@ -1,0 +1,34 @@
+.tp-accordion {
+    width: 100%;
+    border: $vibe-border;
+    border-radius: $vibe-radius;
+    background: $vibe-bg;
+    color: $vibe-text;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+
+    .tp-accordion-header {
+        // Is the <summary> element
+        display: block; // removes default marker in some browsers (needs list-style-type: none hack if strict)
+        padding: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: rgba($vibe-text, 0.02);
+        user-select: none;
+
+        &:hover {
+            background-color: rgba($vibe-text, 0.05);
+        }
+    }
+
+    .tp-accordion-content {
+        padding: 1rem;
+        border-top: $vibe-border;
+        background-color: $vibe-bg;
+    }
+
+    &[open] {
+        // Styling when open if needed, e.g. active border
+        box-shadow: $vibe-shadow;
+    }
+}

@@ -1,0 +1,26 @@
+.tp-sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    background: $vibe-bg;
+    border-right: $vibe-border;
+    padding: 1rem;
+    color: $vibe-text;
+
+    // Scoped links
+    a {
+        display: block;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        color: $vibe-text;
+        text-decoration: none;
+        border-radius: $vibe-radius;
+
+        &:hover {
+            background-color: rgba($vibe-text, 0.05);
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.tp-file {
+    font-size: 0.875rem;
+    color: $vibe-text;
+
+    // File input styling is tricky, this targets the wrapper or input itself
+    &::file-selector-button {
+        padding: 0.5rem 1rem;
+        border-radius: $vibe-radius;
+        border: $vibe-border;
+        background: rgba($vibe-text, 0.1);
+        color: $vibe-text;
+        cursor: pointer;
+        margin-right: 1rem;
+        transition: 0.2s;
+
+        &:hover {
+            background: rgba($vibe-text, 0.2);
+        }
+    }
+}

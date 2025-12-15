@@ -1,0 +1,27 @@
+.tp-pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+
+    button,
+    a {
+        padding: 0.5rem 0.75rem;
+        margin: 0 0.25rem;
+        border: $vibe-border;
+        border-radius: $vibe-radius;
+        background: $vibe-bg;
+        color: $vibe-text;
+        text-decoration: none;
+
+        &:hover {
+            background-color: rgba($vibe-text, 0.1);
+            transform: translateY(-1px);
+        }
+
+        &[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+}

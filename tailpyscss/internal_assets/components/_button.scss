@@ -1,0 +1,27 @@
+.tp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    border-radius: $vibe-radius;
+    // For buttons, we might want a slightly different background or the accent color
+    // But for the "base" vibe button, let's use the border color as a ghostly background or transparent
+    background: transparent;
+    border: $vibe-border;
+    color: $vibe-text;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $vibe-accent-glow;
+        // Make it slightly more opaque on hover
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}

@@ -2,162 +2,121 @@
   <img src="https://raw.githubusercontent.com/tailpyscss2/tailpyscss-framework/main/docs/assets/logos/tailpyscss_logo_snake_wind.png" alt="TailPySCSS Logo" width="200"/>
 </p>
 
-# TailPySCSS v0.4.7
+# TailPySCSS v0.5.0: The Frontend Engine
 
 [![Analysis & Tests](https://github.com/tailpyscss2/tailpyscss-framework/actions/workflows/main.yml/badge.svg)](https://github.com/tailpyscss2/tailpyscss-framework/actions/workflows/main.yml)
 [![PyPI - Version](https://img.shields.io/pypi/v/tailpyscss)](https://pypi.org/project/tailpyscss/)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/tailpyscss)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tailpyscss)
-![License](https://img.shields.io/github/license/tailpyscss2/tailpyscss-framework)
+[![Python Version](https://img.shields.io/pypi/pyversions/tailpyscss)](https://pypi.org/project/tailpyscss/)
+[![License](https://img.shields.io/github/license/tailpyscss2/tailpyscss-framework)](https://img.shields.io/github/license/tailpyscss2/tailpyscss-framework)
 
-**The Python-Native Utility CSS Engine for Clean HTML**
+> **"Build Modern UI in Python. No Node.js. No npm. No Webpack."**
 
-TailPySCSS is a **Python-powered TailwindCSS alternative** without Node.js. It is a lightweight **utility-first CSS framework** designed specifically for Python developers (Flask, Django, FastAPI).
+TailPySCSS is a **Python-Native CSS Engine**. It gives you the power of utility classes (like Tailwind) and the structure of components (like Bootstrap) without the nightmare of a Node.js build pipeline.
 
-If you are looking for a **Python styling framework** or a pure Python **UI framework**, this is it. Unlike traditional tools, this is a **Node-less CSS engine** that compiles **SCSS** to CSS directly in Python. It perfectly integrates with Jinja2 templates, keeping your project 100% Pythonic.
-
-**100% Python. 100% Open Source.**
-
-**Created by [Abdi Abdikarim](https://github.com/CABDUWAHAAB)**
+It compiles SCSS to CSS directly in Python. It scans your Python code for usage. It treeshakes unused styles by default.
 
 ---
 
-## 🚀 New in v0.4.0 (The 3x Bundle)
-*   **Universal Python Bridge**: Automatically generates `tailpyscss_theme.py` effectively synching your frontend design tokens with your Python backend (Flask/Django/FastAPI).
-*   **Smart Config**: Validated Python-based configuration (`tailpy_config.py`) with 100% Security Sanitization preventing CSS injections.
-*   **Performance Core**: Smart MD5 Caching & 0.1s Watch Debounce for instant feedback.
+## 🔥 Creating UI in Python (New in v0.5.0)
 
-## 📦 Installation
+Forget writing HTML classes manually. Use the new **Python Component Library**:
 
-You can install TailPySCSS via pip or from source.
+```python
+from tailpyscss.ui import Card, Button, Input, Switch
 
-### Option 1: Install via PyPI
+def view():
+    return Card(
+        Input(placeholder="Enter email"),
+        Switch(label="Enable Notifications"),
+        Button("Save Changes", variant="primary")
+    )
+```
+
+**What happens?**
+1.  **The Scanner** detects you used `Card`, `Input`, and `Switch`.
+2.  **The Engine** compiles *only* the CSS needed for those 3 components.
+3.  **The Output** is a tiny, optimized CSS file (**~9 KB** for small apps).
+
+---
+
+## 🚀 Features
+
+### 1. Zero Node.js Dependency
+Stop fighting `package.json`, `node_modules`, and `webpack.config.js`. TailPySCSS is 100% Python.
+*   **Install**: `pip install tailpyscss`
+*   **Run**: `tailpyscss build`
+
+### 2. The Context Engine (Tree Shaking)
+We don't include 500KB of unused CSS. If you don't use the `Table` component in your Python code, its CSS is **not generated**.
+*   **Base Size**: ~9 KB (Utilities only)
+*   **Full Suite**: ~19 KB (All 30+ components)
+
+### 3. The Component Library (30+ Elements)
+Batteries included. Neon-ready. Glassmorphism-ready.
+*   **Essentials**: `Button`, `Card`, `Badge`, `Alert`, `Navbar`, `Hero`.
+*   **Forms**: `Input`, `Select`, `Checkbox`, `Radio`, `Switch`, `File`.
+*   **Overlay**: `Modal`, `Toast`, `Tooltip`, `Popover`.
+*   **Navigation**: `Tabs`, `Sidebar`, `Pagination`, `Breadcrumb`.
+
+### 4. The Vibe Engine (Dynamic Theming)
+Change your entire app's feel with one config line.
+```python
+# tailpy_config.py
+config = {
+    "vibe": "neon"  # Options: 'flat', 'glass', 'neon'
+}
+```
+
+---
+
+## ⚡ Quick Start
+
+### 1. Install
 ```bash
 pip install tailpyscss
 ```
 
-### Option 2: Install from Source (Development)
-If you want to contribute or modify the framework:
-```bash
-pip install -e .
-```
-
-### Auto-Setup for Windows
-The installation attempts to automatically run:
-```bash
-python -m tailpyscss.cli setup-path
-```
-This adds the generic Python `Scripts` folder to your Windows PATH so you can use the `tailpyscss` command globally.
-
-> [!NOTE]
-> **Command not found?**
-> If the automatic setup failed and Windows can't find the `tailpyscss` command, run the setup manually:
-> ```bash
-> python -m tailpyscss.cli setup-path
-> ```
-> Then restart your terminal.
-
-## ⚡ Quick Start
-
-### 1. Initialize
-Go to your project folder and run:
-
+### 2. Initialize
 ```bash
 tailpyscss init
 ```
-*(Or use `python -m tailpyscss.cli init`)*
+Creates `tailpy_config.py` and `styles/` folder.
 
-This creates:
-*   `tailpy_config.py` (Your Python-based Settings!)
-*   `styles/` folder (Your SCSS)
-
-### 2. Build or Watch
-To build once:
+### 3. Build & Watch
 ```bash
-tailpyscss build
-```
-
-To watch for changes (0.1s response time):
-```bash
+# Watch for changes (0.1s response time)
 tailpyscss watch
 ```
 
-### 3. The Universal Bridge (Backend Magic)
-When you run build, we generate `tailpyscss_theme.py`. Use it in your Python code!
-
-```python
-import tailpyscss_theme
-
-print(tailpyscss_theme.COLORS['primary']) 
-# Output: #3b82f6 (Synced directly from your CSS logic!)
-```
-
-### 4. The Core Philosophy: Clean HTML & BEM
-The main objective of TailPySCSS is to separate structure (HTML) from implementation (CSS). Instead of cluttering your HTML with classes, use **SCSS BEM** and the custom `@apply` directive.
-
-**Your SCSS (`styles/main.scss`):**
-```scss
-.card {
-    @apply flex flex-col bg-white p-6 rounded-lg shadow-lg;
-
-    &__header {
-        @apply text-2xl font-bold text-dark mb-4;
-    }
-
-    &__button {
-        @apply px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition-colors;
-    }
-}
-```
-
-### 5. Modular SCSS (New in v0.4.5)
-You are not limited to `main.scss`. You can create as many SCSS files as you like (e.g., `styles/components/_card.scss`) and import them.
-
-**`styles/main.scss`:**
-```scss
-@import "utilities";
-@import "components/card"; 
-// ^ The framework will automatically process @apply inside your imports!
-```
-
-**`styles/components/_card.scss`:**
-```scss
-.card {
-     @apply bg-white p-6 rounded shadow;
-}
-```
-
-
 ---
 
-## ⚙️ Configuration (`tailpy_config.py`)
-We now use **Native Python** for configuration. Pure dynamic power.
+## 🛠️ Configuration
+
+Configure colors, spacing, and vibes in pure Python:
 
 ```python
+# tailpy_config.py
 config = {
     "colors": {
-        "primary": "#3b82f6",
-        "secondary": "#ec4899",
-        "dark": "#1f2937",
-        "light": "#f3f4f6"
+        "primary": "#3b82f6",  # Blue
+        "secondary": "#ec4899" # Pink
     },
-    # ... screens, spacing, typography
+    "vibe": "glass"
 }
 ```
 
-> [!IMPORTANT]
-> **Security Guarantee**: All configuration values are strictly sanitized. Attempts to inject CSS (e.g., `"; body { display: none }"`) will raise a `Security Alert` and stop the build.
+## 📚 Comparisons
 
----
-
-## 📚 Documentation
-
-*   [**Class Reference**](https://github.com/tailpyscss2/tailpyscss-framework/blob/main/docs/reference.md): Valid list of all generated classes.
-*   [**Contributing Guide**](https://github.com/tailpyscss2/tailpyscss-framework/blob/main/CONTRIBUTING.md): How to develop the framework itself.
-*   [**Security Policy**](https://github.com/tailpyscss2/tailpyscss-framework/blob/main/SECURITY.md): Reporting vulnerabilities.
+| Feature | TailPySCSS (v2) | Tailwind JIT | Bootstrap 5 |
+| :--- | :--- | :--- | :--- |
+| **Tech Stack** | **Python (Pip)** | Node.js (Npm) | SASS |
+| **Setup Time** | **1 Minute** | 10-20 Minutes | 5 Minutes |
+| **Dependencies** | **0** | 100+ (Node modules) | 0 (if CDN) |
+| **Output Size** | **~9 KB - 19 KB** | ~3 KB - 10 KB | ~200 KB + JS |
+| **Tree Shaking** | **Yes (Component)** | Yes (Class) | Manual Only |
 
 ---
 
 ## 📄 License
-
-MIT License. Free for commercial and private use.
+MIT License. **100% Open Source.**
+Created by [Abdi Abdikarim](https://github.com/CABDUWAHAAB).

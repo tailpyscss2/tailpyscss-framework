@@ -1,0 +1,21 @@
+.tp-progress {
+    width: 100%;
+    height: 1rem;
+    border-radius: $vibe-radius;
+    border: none;
+    appearance: none; // Standard
+    -webkit-appearance: none;
+    overflow: hidden;
+
+    // Background bar
+    &::-webkit-progress-bar {
+        background-color: rgba($vibe-text, 0.1);
+    }
+
+    // Value bar
+    &::-webkit-progress-value {
+        background-color: #3b82f6; // $vibe-accent
+        box-shadow: $vibe-accent-glow;
+        transition: width 0.3s ease;
+    }
+}

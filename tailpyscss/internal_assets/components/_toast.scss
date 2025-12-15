@@ -1,0 +1,31 @@
+.tp-toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+
+    min-width: 250px;
+    padding: 1rem;
+
+    background: $vibe-bg;
+    color: $vibe-text;
+    border: $vibe-border;
+    border-radius: $vibe-radius;
+    box-shadow: $vibe-shadow;
+    backdrop-filter: $vibe-backdrop;
+
+    // Animation entrance
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

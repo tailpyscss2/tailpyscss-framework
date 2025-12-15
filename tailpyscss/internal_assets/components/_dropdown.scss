@@ -1,0 +1,45 @@
+.tp-dropdown {
+    position: relative;
+    display: inline-block;
+
+    .tp-dropdown-menu {
+        display: none; // Hidden by default
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 160px;
+        z-index: 50;
+        margin-top: 0.5rem;
+
+        background: $vibe-bg;
+        border: $vibe-border;
+        border-radius: $vibe-radius;
+        box-shadow: $vibe-shadow;
+        padding: 0.5rem 0;
+
+        // Items
+        .item,
+        a,
+        button {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 1rem;
+            text-align: left;
+            background: transparent;
+            border: none;
+            color: $vibe-text;
+            cursor: pointer;
+            text-decoration: none;
+
+            &:hover {
+                background-color: rgba($vibe-text, 0.05);
+            }
+        }
+    }
+
+    // JS-free hover state (or focus-within)
+    &:hover .tp-dropdown-menu,
+    &:focus-within .tp-dropdown-menu {
+        display: block;
+    }
+}

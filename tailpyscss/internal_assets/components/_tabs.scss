@@ -1,0 +1,29 @@
+.tp-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: $vibe-border;
+
+    // Tab Headers (simple implementation not depending on strict children classes)
+    // Assuming children are buttons or links
+    >button,
+    >a {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        color: $vibe-text;
+        opacity: 0.7;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+
+        &:hover {
+            opacity: 1;
+            background-color: rgba($vibe-text, 0.05);
+        }
+
+        &.active {
+            opacity: 1;
+            border-bottom-color: $vibe-text;
+        }
+    }
+}

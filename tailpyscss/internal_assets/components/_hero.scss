@@ -1,0 +1,29 @@
+.tp-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 1rem;
+
+    background: $vibe-bg;
+    // Maybe no border for Hero, or just keep generic vibe variables
+    // Hero often doesn't have a border unless it's a specific "card-like" hero
+    // Let's use the background and text color mainly.
+    color: $vibe-text;
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        // Add a subtle text shadow from the glow variable if possible, or just generic
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+}

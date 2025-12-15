@@ -1,0 +1,28 @@
+.tp-tooltip {
+    position: relative;
+    display: inline-block;
+
+    .tp-tooltip-text {
+        visibility: hidden;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 0.5rem;
+
+        padding: 0.25rem 0.5rem;
+        background-color: $vibe-text; // Inverted
+        color: $vibe-bg; // Inverted
+        border-radius: $vibe-radius;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.2s;
+        z-index: 50;
+    }
+
+    &:hover .tp-tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+}

@@ -1,0 +1,17 @@
+.tp-select {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 2.25rem 0.5rem 0.75rem;
+    font-size: 1rem;
+    color: $vibe-text;
+    background-color: $vibe-bg;
+    border: $vibe-border;
+    border-radius: $vibe-radius;
+    appearance: none; // Hide default arrow
+    // Add custom arrow SVG if needed, simple for now
+
+    &:focus {
+        outline: 0;
+        box-shadow: $vibe-accent-glow;
+    }
+}

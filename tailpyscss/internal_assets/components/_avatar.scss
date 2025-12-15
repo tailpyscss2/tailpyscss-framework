@@ -1,0 +1,10 @@
+.tp-avatar {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: $vibe-border;
+    box-shadow: $vibe-shadow;
+    background-color: $vibe-bg; // Fallback
+}

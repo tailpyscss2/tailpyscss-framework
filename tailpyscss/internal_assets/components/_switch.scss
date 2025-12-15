@@ -1,0 +1,45 @@
+.tp-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    .tp-switch-input {
+        display: none; // Hide checkbox
+    }
+
+    .tp-switch-slider {
+        position: relative;
+        width: 3rem;
+        height: 1.5rem;
+        background-color: rgba($vibe-text, 0.2);
+        border-radius: 999px;
+        transition: 0.3s background-color;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            width: calc(1.5rem - 4px);
+            height: calc(1.5rem - 4px);
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s transform;
+        }
+    }
+
+    // Checked State
+    .tp-switch-input:checked+.tp-switch-slider {
+        background-color: #3b82f6; // Standard Blue
+        box-shadow: $vibe-accent-glow;
+
+        &::before {
+            transform: translateX(1.5rem);
+        }
+    }
+
+    .tp-switch-label {
+        color: $vibe-text;
+    }
+}

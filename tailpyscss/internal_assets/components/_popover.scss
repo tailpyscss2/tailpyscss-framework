@@ -1,0 +1,30 @@
+.tp-popover {
+    position: relative;
+    display: inline-block;
+
+    // Simplified logic: show on hover/focus for now to be CSS-only
+    // JavaScript is usually needed for click-toggle
+
+    .tp-popover-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 0.5rem;
+
+        min-width: 200px;
+        padding: 1rem;
+
+        background: $vibe-bg;
+        border: $vibe-border;
+        border-radius: $vibe-radius;
+        box-shadow: $vibe-shadow;
+        z-index: 50;
+    }
+
+    &:hover .tp-popover-content,
+    &:focus-within .tp-popover-content {
+        display: block;
+    }
+}

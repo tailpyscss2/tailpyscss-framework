@@ -71,7 +71,7 @@ class PostInstallCommand(install):
 
 setup(
     name="tailpyscss",
-    version="0.4.9",
+    version="0.5.0",
     packages=find_packages(),
     install_requires=[
         "libsass>=0.22.0",
@@ -97,6 +97,10 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+        "Framework :: Flask",
+        "Framework :: Django",
+        "Topic :: Software Development :: User Interfaces",
+        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     ],
     project_urls={
         "Source": "https://github.com/tailpyscss2/tailpyscss-framework",

@@ -2,7 +2,7 @@ import sass
 import os
 import re
 
-def compile_scss(input_path, output_path):
+def compile_scss(input_path, output_path, output_style='expanded'):
     """
     Compile SCSS to CSS using libsass with full @apply and @import support.
     Uses a manual preprocessor to recursively resolve imports and inline content.
@@ -47,6 +47,21 @@ def compile_scss(input_path, output_path):
                 # Recursively resolve imports in the new file
                 return resolve_imports(file_content, os.path.dirname(target_file)) + "\n"
             else:
+                # --- NEW: Fallback to Internal Assets ---
+                internal_path = os.path.join(os.path.dirname(__file__), 'internal_assets', import_path)
+                if not internal_path.endswith('.scss'):
+                    # Try partial _filename.scss
+                    parts = os.path.split(internal_path)
+                    internal_candidate = os.path.join(parts[0], "_" + parts[1] + ".scss")
+                else:
+                    internal_candidate = internal_path
+
+                if os.path.exists(internal_candidate):
+                    # print(f"DEBUG: Found internal asset: {internal_candidate}")
+                    with open(internal_candidate, 'r', encoding='utf-8') as f:
+                        internal_content = f.read()
+                    return resolve_imports(internal_content, os.path.dirname(internal_candidate)) + "\n"
+                
                 # If not found, leave it for libsass to error or handle
                 return match.group(0)
 
@@ -111,7 +126,7 @@ def compile_scss(input_path, output_path):
         css = sass.compile(
             string=processed_scss,
             include_paths=[os.path.dirname(input_path)],
-            output_style='expanded'
+            output_style=output_style
         )
         with open(output_path, "w") as f:
             f.write(css)

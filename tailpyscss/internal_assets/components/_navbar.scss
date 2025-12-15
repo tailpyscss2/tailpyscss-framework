@@ -1,0 +1,18 @@
+.tp-navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+
+    background: $vibe-bg;
+    border-bottom: $vibe-border;
+    box-shadow: $vibe-shadow;
+    backdrop-filter: $vibe-backdrop;
+
+    // Ensure it sits on top if sticky
+    z-index: 50;
+
+    // Handles specific children if needed, but keeping it generic for now
+}

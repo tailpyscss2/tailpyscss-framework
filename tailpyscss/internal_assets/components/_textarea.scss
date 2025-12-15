@@ -1,0 +1,18 @@
+.tp-textarea {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: $vibe-text;
+    background-color: $vibe-bg;
+    border: $vibe-border;
+    border-radius: $vibe-radius;
+    min-height: 100px;
+    resize: vertical;
+
+    &:focus {
+        outline: 0;
+        box-shadow: $vibe-accent-glow;
+    }
+}

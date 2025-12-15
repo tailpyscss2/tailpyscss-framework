@@ -1,0 +1,24 @@
+/* Core Card Component */
+.tp-card {
+    // Vibe Engine Variables
+    background: $vibe-bg;
+    box-shadow: $vibe-shadow;
+    border: $vibe-border;
+    border-radius: $vibe-radius;
+    backdrop-filter: $vibe-backdrop;
+    color: $vibe-text;
+
+    @apply p-6;
+
+    &__title {
+        @apply text-xl font-bold mb-2;
+    }
+
+    &__text {
+        @apply mb-4; // text color handled by parent
+    }
+
+    &__actions {
+        @apply flex justify-end gap-2;
+    }
+}

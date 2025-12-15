@@ -1,0 +1,23 @@
+.tp-input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: $vibe-text;
+    background-color: $vibe-bg;
+    background-clip: padding-box;
+    border: $vibe-border;
+    border-radius: $vibe-radius;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:focus {
+        outline: 0;
+        box-shadow: $vibe-accent-glow;
+        border-color: #3b82f6; // Or derive from vibe var
+    }
+
+    &::placeholder {
+        color: rgba($vibe-text, 0.5);
+    }
+}

@@ -1,29 +1,44 @@
-# Build artifacts
-dist/
-build/
-*.egg-info/
-
-# Cache
+# --- Python ---
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Environment (optional but good practice)
-venv/
-env/
-.env
-
-# TailPySCSS generated
-.tailpy.cache
+# --- TailPySCSS Generated ---
+static/
+styles/
+!styles/.gitkeep
 tailpy_config.py
 tailpyscss_theme.py
+debug_processed.scss
+.tailpy.cache
 
-# Exceptions (Track Docs Config)
-!website/tailpy_config.py
+# --- IDEs ---
+.vscode/
+.idea/
+
+# --- User Workspace (Stash) ---
+_workspace_backup/
 ACC/
 TD/
-
-# Garbage / Scratch
+website/
 my-website/
-*.log
-debug_*.py
-debug_*.txt
+tests/sandbox/

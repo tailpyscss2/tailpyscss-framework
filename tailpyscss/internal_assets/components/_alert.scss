@@ -1,0 +1,13 @@
+.tp-alert {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: $vibe-border;
+    border-radius: $vibe-radius;
+    background: $vibe-bg;
+    color: $vibe-text;
+    box-shadow: $vibe-shadow;
+
+    // Optional: stronger left border for emphasis
+    border-left-width: 4px;
+}

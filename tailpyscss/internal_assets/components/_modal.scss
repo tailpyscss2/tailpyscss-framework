@@ -1,0 +1,23 @@
+.tp-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+
+    background: $vibe-bg;
+    color: $vibe-text;
+    border: $vibe-border;
+    border-radius: $vibe-radius;
+    box-shadow: $vibe-shadow;
+    backdrop-filter: $vibe-backdrop; // For Glass vibe
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+    }
+}
