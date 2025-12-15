@@ -11,6 +11,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+    <style>
+        .preview-box {
+            border: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Subtle checkerboard for transparency checks */
+            background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+    </style>
 </head>
 
 <body class="bg-light text-dark font-sans leading-normal">
@@ -27,7 +43,8 @@
                 <a href="ui.html" class="navbar__link navbar__link--active">UI Components</a>
                 <a href="features.html" class="navbar__link">Features</a>
                 <a href="reference.html" class="navbar__link">Class Reference</a>
-                <a href="https://github.com/tailpyscss2/tailpyscss-framework" class="navbar__link navbar__link--github">GitHub</a>
+                <a href="https://github.com/tailpyscss2/tailpyscss-framework"
+                    class="navbar__link navbar__link--github">GitHub</a>
             </div>
         </div>
     </nav>
@@ -49,19 +66,26 @@
         <!-- Content Area -->
         <main class="content">
             <h1>Component Library 📦</h1>
-            <p>TailPySCSS v0.5 includes a comprehensive suite of 30+ components. These are Python classes that generate Semantic HTML and trigger the optimized CSS engine.</p>
-            
+            <p>TailPySCSS v0.5 includes a comprehensive suite of 30+ components. Below are live visual previews.</p>
+
             <p><strong>Note:</strong> All components are available via <code>from tailpyscss.ui import ...</code></p>
 
             <hr>
 
             <!-- 1. Essentials -->
             <h2>Base & Layout</h2>
-            <p>The core building blocks of any interface.</p>
 
             <div class="component-block">
                 <h3>Card</h3>
                 <p>A flexible container with shadow, padding, and rounded corners.</p>
+                <!-- PREVIEW -->
+                <div class="preview-box">
+                    <div class="tp-card shadow-lg p-6 bg-white rounded-xl" style="max-width:300px;">
+                        <h4 class="text-xl font-bold mb-2">Card Title</h4>
+                        <p class="text-gray-600 mb-4">This is card content. It looks amazing.</p>
+                        <button class="tp-btn tp-btn-primary">Click Me</button>
+                    </div>
+                </div>
                 <pre><code class="language-python">Card(
     children=[
         "This is card content",
@@ -73,24 +97,56 @@
             <div class="component-block">
                 <h3>Button</h3>
                 <p>Standard interactive button.</p>
+                <!-- PREVIEW -->
+                <div class="preview-box">
+                    <div class="flex gap-4">
+                        <button class="tp-btn tp-btn-primary">Primary</button>
+                        <button class="tp-btn tp-btn-secondary">Secondary</button>
+                        <button class="tp-btn" style="background:#ef4444; color:white;">Danger</button>
+                    </div>
+                </div>
                 <pre><code class="language-python">Button("Submit", type="submit")</code></pre>
             </div>
 
             <div class="component-block">
                 <h3>Badge</h3>
                 <p>Small status indicator.</p>
+                <!-- PREVIEW -->
+                <div class="preview-box">
+                    <div class="flex gap-2">
+                        <span class="tp-badge tp-badge-primary">New</span>
+                        <span class="tp-badge tp-badge-secondary">Beta</span>
+                        <span class="tp-badge bg-green-100 text-green-800">Success</span>
+                    </div>
+                </div>
                 <pre><code class="language-python">Badge("New")</code></pre>
             </div>
 
             <div class="component-block">
                 <h3>Alert</h3>
                 <p>Contextual feedback message.</p>
+                <!-- PREVIEW -->
+                <div class="preview-box w-full">
+                    <div class="tp-alert tp-alert-success border-l-4 border-green-500 bg-green-50 p-4 w-full">
+                        <p class="text-green-700">Payment Successful! Your order has been processed.</p>
+                    </div>
+                </div>
                 <pre><code class="language-python">Alert("Payment Successful!")</code></pre>
             </div>
-            
-             <div class="component-block">
+
+            <div class="component-block">
                 <h3>Navbar</h3>
                 <p>Top navigation header.</p>
+                <!-- PREVIEW -->
+                <div class="preview-box" style="padding:0; background:none;">
+                    <nav class="tp-navbar bg-white shadow p-4 w-full flex justify-between items-center rounded-lg">
+                        <a href="#" class="font-bold text-xl">Brand</a>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-gray-600 hover:text-blue-500">Home</a>
+                            <a href="#" class="text-gray-600 hover:text-blue-500">About</a>
+                        </div>
+                    </nav>
+                </div>
                 <pre><code class="language-python">Navbar(
    Link("Home"), Link("About")
 )</code></pre>
@@ -104,65 +160,73 @@
 
             <div class="component-block">
                 <h3>Input</h3>
+                <!-- PREVIEW -->
+                <div class="preview-box">
+                    <input type="text" class="tp-input border p-2 rounded w-64" placeholder="email@example.com">
+                </div>
                 <pre><code class="language-python">Input(placeholder="email@example.com")</code></pre>
             </div>
+
             <div class="component-block">
-                <h3>Textarea</h3>
-                <pre><code class="language-python">Textarea(placeholder="Enter your message...")</code></pre>
-            </div>
-             <div class="component-block">
                 <h3>Switch</h3>
                 <p>Toggle switch (prettier checkbox).</p>
+                <!-- PREVIEW -->
+                <div class="preview-box">
+                    <label class="tp-switch flex items-center cursor-pointer">
+                        <div class="relative">
+                            <input type="checkbox" class="sr-only" checked>
+                            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                            <div
+                                class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition transform translate-x-6">
+                            </div>
+                        </div>
+                        <div class="ml-3 text-gray-700 font-medium">Enable Dark Mode</div>
+                    </label>
+                </div>
                 <pre><code class="language-python">Switch(label="Enable Dark Mode")</code></pre>
             </div>
-             <div class="component-block">
-                <h3>Select</h3>
-                <pre><code class="language-python">Select(
-    Option("Option 1"),
-    Option("Option 2")
-)</code></pre>
-            </div>
 
-             <hr>
+
+            <hr>
 
             <!-- 3. Navigation -->
             <h2>Navigation</h2>
-            <p>Getting around your application.</p>
 
             <div class="component-block">
                 <h3>Tabs</h3>
+                <!-- PREVIEW -->
+                <div class="preview-box">
+                    <div class="tp-tabs border-b">
+                        <ul class="flex">
+                            <li class="mr-1"><a
+                                    class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold"
+                                    href="#">Profile</a></li>
+                            <li class="mr-1"><a
+                                    class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+                                    href="#">Settings</a></li>
+                            <li class="mr-1"><a class="bg-white inline-block py-2 px-4 text-gray-400 font-semibold"
+                                    href="#">Billing</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <pre><code class="language-python">Tabs("Profile", "Settings", "Billing")</code></pre>
             </div>
-             <div class="component-block">
-                <h3>Sidebar</h3>
-                <pre><code class="language-python">Sidebar(Link("Dashboard"), Link("Users"))</code></pre>
-            </div>
-             <div class="component-block">
-                <h3>Breadcrumb</h3>
-                <pre><code class="language-python">Breadcrumb("Home", "Products", "Details")</code></pre>
-            </div>
+
 
             <hr>
-            
+
             <!-- 4. Feedback -->
             <h2>Feedback & Overlay</h2>
-            
-            <div class="component-block">
-                <h3>Modal</h3>
-                <p>Dialog overlay with backdrop.</p>
-                <pre><code class="language-python">Modal(
-    "Are you sure?",
-    Button("Yes"), Button("No")
-)</code></pre>
-            </div>
-            <div class="component-block">
-                <h3>Toast</h3>
-                <p>Non-blocking notification popup.</p>
-                <pre><code class="language-python">Toast("Changes saved")</code></pre>
-            </div>
+
             <div class="component-block">
                 <h3>Spinner</h3>
                 <p>Loading animation.</p>
+                <!-- PREVIEW -->
+                <div class="preview-box">
+                    <div
+                        class="tp-spinner w-10 h-10 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin">
+                    </div>
+                </div>
                 <pre><code class="language-python">Spinner()</code></pre>
             </div>
 
@@ -174,4 +238,5 @@
     </footer>
 
 </body>
+
 </html>

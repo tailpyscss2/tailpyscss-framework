@@ -1,4 +1,5 @@
-.tp-tabs {
+.tp-tabs,
+[ui="tabs"] {
     display: flex;
     flex-wrap: wrap;
     border-bottom: $vibe-border;

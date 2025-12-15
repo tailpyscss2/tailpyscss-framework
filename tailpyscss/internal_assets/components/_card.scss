@@ -1,5 +1,6 @@
 /* Core Card Component */
-.tp-card {
+.tp-card,
+[ui="card"] {
     // Vibe Engine Variables
     background: $vibe-bg;
     box-shadow: $vibe-shadow;
