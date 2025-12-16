@@ -1,26 +1,75 @@
-.tp-sidebar {
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
+.tp-sidebar,
+[ui="sidebar"] {
+    width: 260px;
+    height: fit-content; // Stop stretching!
+    max-height: calc(100vh - 72px);
+    align-self: flex-start; // Critical for Flexbox
+    position: sticky;
+    top: 72px;
     overflow-y: auto;
-    background: $vibe-bg;
-    border-right: $vibe-border;
-    padding: 1rem;
-    color: $vibe-text;
 
-    // Scoped links
+    // Clean styling
+    background: transparent;
+    border-right: 1px solid #f3f4f6;
+    padding: 2rem 1.5rem 2rem 0;
+    margin-right: 2rem;
+    flex-shrink: 0;
+
+    // Mobile logic
+    display: none;
+
+    @media (min-width: 768px) {
+        display: block;
+    }
+
+    // LIST RESET (Crucial for "looking nice")
+    ul {
+        list-style: none !important; // Force remove bullets
+        padding: 0;
+        margin: 0 0 2rem 0;
+    }
+
+    // Remove bullets from items too
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none !important;
+    }
+
+    // Category Header
+    h3 {
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #9ca3af; // Gray-400
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+        padding-left: 0.75rem; // Align with link text
+    }
+
+    // Links
     a {
         display: block;
-        padding: 0.75rem;
-        margin-bottom: 0.5rem;
-        color: $vibe-text;
+        padding: 0.6rem 0.75rem;
+        margin-bottom: 2px;
+        border-radius: 8px;
+
+        color: #4b5563; // Gray-600
+        font-size: 0.95rem;
+        font-weight: 500;
         text-decoration: none;
-        border-radius: $vibe-radius;
+        transition: all 0.2s ease;
 
         &:hover {
-            background-color: rgba($vibe-text, 0.05);
+            color: #111827; // Black
+            background: #f9fafb; // Gray-50
+        }
+
+        &.active {
+            background: #eff6ff; // Blue-50
+            color: #4f46e5; // Indigo-600
+            font-weight: 600;
         }
     }
 }

@@ -30,7 +30,7 @@ def generate_utilities(config, active_contexts=None):
         scss.append(f"${var}: {val};")
     scss.append("")
 
-    # 1. Global Utilities (Always Included)
+    # 1. Global Utilities (Base)
     generator_classes = [
         ColorGenerator,
         SpacingGenerator,
@@ -40,9 +40,45 @@ def generate_utilities(config, active_contexts=None):
         EffectsGenerator
     ]
 
+    # A. Generate Base Utilities
     for gen_class in generator_classes:
         generator = gen_class(config)
         scss.append(generator.generate())
+        scss.append("")
+
+    # B. Generate Responsive Utilities
+    screens = config.get("screens", {})
+    for screen_name, screen_value in screens.items():
+        scss.append(f"@media (min-width: {screen_value}) {{")
+        
+        for gen_class in generator_classes:
+            # We need a way to tell the generator to add a prefix
+            # If the generators support a 'prefix' arg, use it.
+            # Otherwise, we might need to rely on the fact that SCSS nesting handles the media query, 
+            # BUT we need to rename the classes: .flex -> .md\:flex
+            
+            # Since generators just return strings like ".flex { display: flex; }", 
+            # we can't easily prefix them without modifying the generators themselves OR using regex.
+            # Regex approach is safest for now to avoid modifying all 6 generators.
+            
+            generator = gen_class(config)
+            base_css = generator.generate()
+            
+            # Regex to prefix classes: .class -> .md\:class
+            # FIX: Use multiline mode (`(?m)^`) to only match start of lines, preventing matches on values like `0.5rem`.
+            import re
+            def prefix_replacer(match):
+                cls = match.group(1)
+                # Escape colon for SCSS class name
+                return f".{screen_name}\\:{cls}"
+            
+            # Match dot at start of line, followed by valid chars (including dots for fractional classes like p-1.5)
+            # Then ensure it's followed by space, comma, or brace to avoid partial matches
+            prefixed_css = re.sub(r'(?m)^\.([a-zA-Z0-9_.-]+)(?=\s*[\{,])', prefix_replacer, base_css)
+            scss.append(f"  /* {screen_name} variant */")
+            scss.append(prefixed_css)
+        
+        scss.append("}")
         scss.append("")
 
     # 2. Context-Aware Components (Tree Shaken)

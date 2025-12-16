@@ -24,8 +24,12 @@ MANIFEST
 
 # --- TailPySCSS Generated ---
 static/
+!docs/static/
 styles/
 !styles/.gitkeep
+!docs/styles/
+!docs/tailpy_config.py
+!docs/tailpyscss_theme.py
 tailpy_config.py
 tailpyscss_theme.py
 debug_processed.scss
@@ -42,3 +46,5 @@ TD/
 website/
 my-website/
 tests/sandbox/
+
+!docs/tailpy_config.py

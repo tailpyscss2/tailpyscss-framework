@@ -2,23 +2,39 @@
 [ui="input"] {
     display: block;
     width: 100%;
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
+    padding: 0.75rem 1rem; // More breathing room
+    font-size: 0.95rem; // Modern font sizing
     line-height: 1.5;
     color: $vibe-text;
-    background-color: $vibe-bg;
+    background-color: transparentize($vibe-bg, 0.2); // Glassy hint
     background-clip: padding-box;
-    border: $vibe-border;
-    border-radius: $vibe-radius;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border: 1px solid rgba($vibe-text, 0.2);
+    border-radius: 0.5rem; // Smooth corners
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-    &:focus {
-        outline: 0;
-        box-shadow: $vibe-accent-glow;
-        border-color: #3b82f6; // Or derive from vibe var
+    // Placeholder
+    &::placeholder {
+        color: rgba($vibe-text, 0.4);
+        font-weight: 400;
     }
 
-    &::placeholder {
-        color: rgba($vibe-text, 0.5);
+    // Interactive States
+    &:hover {
+        border-color: rgba($vibe-text, 0.4);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #3b82f6; // Primary blue
+        background-color: $vibe-bg;
+        // Premium Focus Ring
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    // Disabled
+    &:disabled {
+        background-color: rgba($vibe-text, 0.05);
+        cursor: not-allowed;
+        opacity: 0.7;
     }
 }

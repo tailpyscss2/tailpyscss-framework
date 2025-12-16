@@ -3,26 +3,54 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
-    border-radius: $vibe-radius;
-    // For buttons, we might want a slightly different background or the accent color
-    // But for the "base" vibe button, let's use the border color as a ghostly background or transparent
+    padding: 0.625rem 1.25rem; // Generous padding
+    font-weight: 600; // Solid font weight
+    font-size: 0.95rem;
+    border-radius: 0.5rem; // Consistent with inputs
+    border: 1px solid transparent; // Ready for borders
+
+    // Default Look (Glass/Ghost Hybrid)
     background: transparent;
-    border: $vibe-border;
     color: $vibe-text;
+    border-color: rgba($vibe-text, 0.2);
+
     cursor: pointer;
-    transition: all 0.2s ease;
+    user-select: none;
     text-decoration: none;
 
+    // Performance Optimized Transitions
+    transition: transform 0.1s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+
+    // Hover Effects
     &:hover {
-        transform: translateY(-2px);
-        box-shadow: $vibe-accent-glow;
-        // Make it slightly more opaque on hover
-        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-1px);
+        background-color: rgba($vibe-text, 0.03);
+        border-color: rgba($vibe-text, 0.4);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
+    // Active/Click
     &:active {
         transform: translateY(0);
+        box-shadow: none;
+        background-color: rgba($vibe-text, 0.05);
+    }
+
+    // Focus
+    &:focus-visible {
+        outline: 2px solid $vibe-text;
+        outline-offset: 2px;
+    }
+
+    // Primary Variant (Optional class helper often needed)
+    &.tp-btn-primary {
+        background-color: #3b82f6;
+        border-color: transparent;
+        color: white;
+
+        &:hover {
+            background-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
     }
 }

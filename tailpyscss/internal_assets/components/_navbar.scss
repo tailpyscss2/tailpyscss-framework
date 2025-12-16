@@ -1,19 +1,69 @@
 .tp-navbar,
 [ui="navbar"] {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    margin-bottom: 2rem;
+    width: 100%;
+    height: 70px;
+    // Removed specific padding here, handled by inner container
 
-    background: $vibe-bg;
-    border-bottom: $vibe-border;
-    box-shadow: $vibe-shadow;
-    backdrop-filter: $vibe-backdrop;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #f3f4f6;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
-    // Ensure it sits on top if sticky
+    position: sticky;
+    top: 0;
     z-index: 50;
+    font-family: ui-sans-serif, system-ui, sans-serif;
 
-    // Handles specific children if needed, but keeping it generic for now
+    // Reset flex behavior to allow inner container to control layout
+    display: block;
+
+    // 1. BRAND REGION
+    .nav-brand-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #111827;
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+    }
+
+    // 2. LINKS REGION
+    .nav-links {
+        a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4b5563; // Gray-600
+            text-decoration: none;
+            transition: color 0.2s;
+
+            &:hover {
+                color: #111827; // Black hover
+            }
+        }
+    }
+
+    // 3. ICONS
+    .nav-icon-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        color: #6b7280;
+        border-radius: 6px;
+        transition: all 0.2s;
+
+        &:hover {
+            color: #111827;
+            background: #f3f4f6;
+        }
+    }
 }
