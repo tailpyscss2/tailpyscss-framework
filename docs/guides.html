@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical Guides - TailPySCSS</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-top: 4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            line-height: 1.75;
+            color: #4b5563;
+            font-size: 1.05rem;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: #4b5563;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .code-window {
+            background: #111827;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #374151;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            background-color: #f3f4f6;
+            color: #db2777;
+            font-family: ui-monospace, monospace;
+            font-size: 0.9em;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-weight: 500;
+        }
+
+        .alert-box {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            border-left-width: 4px;
+        }
+
+        .best-practice {
+            background-color: #f0fdf4;
+            border-left-color: #22c55e;
+        }
+
+        .best-practice h4 {
+            color: #166534;
+            margin-top: 0;
+        }
+
+        .best-practice p {
+            color: #15803d;
+        }
+
+        .warning-box {
+            background-color: #fefce8;
+            border-left-color: #eab308;
+        }
+
+        .warning-box h4 {
+            color: #854d0e;
+            margin-top: 0;
+        }
+
+        .warning-box p {
+            color: #a16207;
+        }
+
+        aside a {
+            display: block;
+            padding: 0.4rem 0;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.15s;
+        }
+
+        aside a:hover {
+            color: #4f46e5;
+        }
+
+        aside h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: #111827;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .anchor-offset {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-dark font-sans leading-normal">
+
+    <nav ui="navbar">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center px-6 h-full">
+            <div class="nav-brand-group flex items-center gap-3">
+                <a href="index.html"
+                    class="nav-logo flex items-center gap-2 font-bold text-3xl text-gray-900 no-underline">
+                    <img src="assets/logos/tailpyscss_logo_snake_wind.png" alt="Logo" class="w-10 h-10">
+                    TailPySCSS
+                </a>
+                <span
+                    class="text-sm bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full font-bold border border-indigo-100">v0.5.3</span>
+            </div>
+
+            <div class="flex items-center gap-8">
+                <div class="nav-links hidden md:flex items-center gap-6">
+                    <a href="docs.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Docs</a>
+                    <a href="guides.html"
+                        class="active text-xl font-medium text-gray-700 hover:text-indigo-600 transition">Guides</a>
+                    <a href="ui.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Components</a>
+                    <a href="features.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Features</a>
+                    <a href="reference.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">API</a>
+                    <a href="troubleshooting.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">FAQ</a>
+                </div>
+                <div class="h-6 w-px bg-gray-200 hidden md:block"></div>
+                <a href="https://github.com/tailpyscss2/tailpyscss-framework"
+                    class="text-gray-400 hover:text-black transition">
+                    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto w-full px-6 flex items-start">
+
+        <aside ui="sidebar" class="hidden md:block w-64 pt-10 pb-10">
+            <h3>Component Patterns</h3>
+            <ul>
+                <li><a href="#navbar-pattern">Navbar</a></li>
+                <li><a href="#form-pattern">Forms</a></li>
+                <li><a href="#card-grid">Card Grids</a></li>
+                <li><a href="#modal-pattern">Modals</a></li>
+            </ul>
+
+            <h3>Dark Mode</h3>
+            <ul>
+                <li><a href="#dark-mode-setup">Setup</a></li>
+                <li><a href="#dark-mode-toggle">Toggle Mechanism</a></li>
+            </ul>
+
+            <h3>Responsive Design</h3>
+            <ul>
+                <li><a href="#mobile-first">Mobile First</a></li>
+                <li><a href="#breakpoints">Breakpoint Strategy</a></li>
+            </ul>
+        </aside>
+
+        <main class="flex-1 py-10 pl-12 min-w-0">
+
+            <div class="mb-16 pb-8 border-b border-gray-200">
+                <span class="text-indigo-600 font-bold tracking-wider text-xs uppercase mb-3 block">Practical
+                    Guides</span>
+                <h1 class="mb-4">Production-Ready Patterns</h1>
+                <p class="text-xl text-gray-500 leading-relaxed max-w-3xl">
+                    Real-world component patterns, dark mode implementation, and responsive design strategies you can
+                    copy-paste into your projects.
+                </p>
+            </div>
+
+            <!-- NAVBAR PATTERN -->
+            <section id="navbar-pattern" class="anchor-offset mb-16">
+                <h2>🧭 Component Pattern: Production Navbar</h2>
+                <p>A responsive navbar with logo, links, and mobile menu. Uses BEM for structure and utilities for
+                    styling.</p>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ Best Practice: Mobile-First Navbar</h4>
+                    <p>Start with mobile layout (vertical stack), then enhance for desktop (horizontal) using
+                        <code>md:</code> breakpoint.
+                    </p>
+                </div>
+
+                <h3>HTML Structure</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;nav class="navbar"&gt;
+    &lt;div class="navbar__container max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"&gt;
+        &lt;!-- Logo --&gt;
+        &lt;a href="/" class="navbar__logo text-2xl font-bold text-gray-900"&gt;
+            MyApp
+        &lt;/a&gt;
+
+        &lt;!-- Desktop Links --&gt;
+        &lt;div class="navbar__links hidden md:flex gap-6"&gt;
+            &lt;a href="/features" class="text-gray-600 hover:text-indigo-600 transition"&gt;Features&lt;/a&gt;
+            &lt;a href="/pricing" class="text-gray-600 hover:text-indigo-600 transition"&gt;Pricing&lt;/a&gt;
+            &lt;a href="/docs" class="text-gray-600 hover:text-indigo-600 transition"&gt;Docs&lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;!-- CTA Button --&gt;
+        &lt;a href="/signup" class="hidden md:block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"&gt;
+            Sign Up
+        &lt;/a&gt;
+
+        &lt;!-- Mobile Menu Button --&gt;
+        &lt;button class="md:hidden" id="mobile-menu-btn"&gt;
+            &lt;svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+                &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"&gt;&lt;/path&gt;
+            &lt;/svg&gt;
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</pre>
+                </div>
+
+                <h3>SCSS Styling</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">.navbar {
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    &__logo {
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    &__links a {
+        font-weight: 500;
+        text-decoration: none;
+    }
+}</pre>
+                </div>
+            </section>
+
+            <!-- FORM PATTERN -->
+            <section id="form-pattern" class="anchor-offset mb-16">
+                <h2>📝 Component Pattern: Accessible Forms</h2>
+                <p>Forms with validation, error states, and accessibility built-in.</p>
+
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;form class="form max-w-md mx-auto p-6 bg-white rounded-lg shadow"&gt;
+    &lt;div class="form__group mb-4"&gt;
+        &lt;label for="email" class="block text-sm font-bold text-gray-700 mb-2"&gt;
+            Email Address
+        &lt;/label&gt;
+        &lt;input 
+            type="email" 
+            id="email" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            placeholder="you@example.com"
+            required
+        &gt;
+        &lt;p class="form__error text-red-600 text-sm mt-1 hidden"&gt;
+            Please enter a valid email
+        &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form__group mb-4"&gt;
+        &lt;label for="password" class="block text-sm font-bold text-gray-700 mb-2"&gt;
+            Password
+        &lt;/label&gt;
+        &lt;input 
+            type="password" 
+            id="password" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+            required
+        &gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700 transition"&gt;
+        Submit
+    &lt;/button&gt;
+&lt;/form&gt;</pre>
+                </div>
+            </section>
+
+            <!-- DARK MODE -->
+            <section id="dark-mode-setup" class="anchor-offset mb-16">
+                <h2>🌙 Dark Mode Implementation</h2>
+                <p>Add dark mode using CSS variables and a toggle mechanism.</p>
+
+                <h3>Step 1: Define CSS Variables</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">/* styles/main.scss */
+:root {
+    --bg-primary: #ffffff;
+    --text-primary: #111827;
+    --border: #e5e7eb;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #111827;
+    --text-primary: #f9fafb;
+    --border: #374151;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}</pre>
+                </div>
+
+                <h3 id="dark-mode-toggle">Step 2: JavaScript Toggle</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">// Add this to your base template
+const toggleDarkMode = () => {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+};
+
+// Load saved theme on page load
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);</pre>
+                </div>
+
+                <h3>Step 3: Toggle Button</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"&gt;
+    🌙 Toggle Dark Mode
+&lt;/button&gt;</pre>
+                </div>
+            </section>
+
+            <!-- RESPONSIVE DESIGN -->
+            <section id="mobile-first" class="anchor-offset mb-16">
+                <h2>📱 Responsive Design Strategy</h2>
+                <p>Build mobile-first, then enhance for larger screens.</p>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ Best Practice: Mobile-First CSS</h4>
+                    <p>Write base styles for mobile, then use <code>md:</code>, <code>lg:</code> prefixes to add desktop
+                        styles. This keeps CSS leaner and faster.</p>
+                </div>
+
+                <h3 id="breakpoints">Breakpoint Strategy</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!-- Mobile: Stack vertically --&gt;
+&lt;!-- Tablet (md): 2 columns --&gt;
+&lt;!-- Desktop (lg): 4 columns --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"&gt;
+    &lt;div class="bg-white p-4 rounded-lg shadow"&gt;Card 1&lt;/div&gt;
+    &lt;div class="bg-white p-4 rounded-lg shadow"&gt;Card 2&lt;/div&gt;
+    &lt;div class="bg-white p-4 rounded-lg shadow"&gt;Card 3&lt;/div&gt;
+    &lt;div class="bg-white p-4 rounded-lg shadow"&gt;Card 4&lt;/div&gt;
+&lt;/div&gt;</pre>
+                </div>
+            </section>
+
+            <footer class="mt-32 pt-10 border-t border-gray-200 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 TailPySCSS. Production-ready patterns.</p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

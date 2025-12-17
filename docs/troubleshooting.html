@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting & FAQ - TailPySCSS</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-top: 4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            line-height: 1.75;
+            color: #4b5563;
+            font-size: 1.05rem;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: #4b5563;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .code-window {
+            background: #111827;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #374151;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            background-color: #f3f4f6;
+            color: #db2777;
+            font-family: monospace;
+            font-size: 0.9em;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-weight: 500;
+        }
+
+        .alert-box {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            border-left-width: 4px;
+        }
+
+        .anti-pattern {
+            background-color: #fef2f2;
+            border-left-color: #ef4444;
+        }
+
+        .anti-pattern h4 {
+            color: #991b1b;
+            margin-top: 0;
+        }
+
+        .anti-pattern p {
+            color: #b91c1c;
+        }
+
+        .best-practice {
+            background-color: #f0fdf4;
+            border-left-color: #22c55e;
+        }
+
+        .best-practice h4 {
+            color: #166534;
+            margin-top: 0;
+        }
+
+        .best-practice p {
+            color: #15803d;
+        }
+
+        aside a {
+            display: block;
+            padding: 0.4rem 0;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        aside a:hover {
+            color: #4f46e5;
+        }
+
+        aside h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #111827;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .anchor-offset {
+            scroll-margin-top: 100px;
+        }
+
+        .faq-item {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid #4f46e5;
+        }
+
+        .faq-item h4 {
+            margin-top: 0;
+            color: #4f46e5;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-dark font-sans leading-normal">
+
+    <nav ui="navbar">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center px-6 h-full">
+            <div class="nav-brand-group flex items-center gap-3">
+                <a href="index.html"
+                    class="nav-logo flex items-center gap-2 font-bold text-3xl text-gray-900 no-underline">
+                    <img src="assets/logos/tailpyscss_logo_snake_wind.png" alt="Logo" class="w-10 h-10">
+                    TailPySCSS
+                </a>
+                <span
+                    class="text-sm bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full font-bold border border-indigo-100">v0.5.3</span>
+            </div>
+
+            <div class="flex items-center gap-8">
+                <div class="nav-links hidden md:flex items-center gap-6">
+                    <a href="docs.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Docs</a>
+                    <a href="guides.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Guides</a>
+                    <a href="ui.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Components</a>
+                    <a href="features.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Features</a>
+                    <a href="reference.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">API</a>
+                    <a href="troubleshooting.html"
+                        class="active text-xl font-medium text-gray-700 hover:text-indigo-600 transition">FAQ</a>
+                </div>
+                <div class="h-6 w-px bg-gray-200 hidden md:block"></div>
+                <a href="https://github.com/tailpyscss2/tailpyscss-framework"
+                    class="text-gray-400 hover:text-black transition">
+                    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto w-full px-6 flex items-start">
+
+        <aside ui="sidebar" class="hidden md:block w-64 pt-10 pb-10">
+            <h3>Common Issues</h3>
+            <ul>
+                <li><a href="#css-not-updating">CSS Not Updating</a></li>
+                <li><a href="#classes-not-generating">Classes Not Generating</a></li>
+                <li><a href="#import-errors">Import Errors</a></li>
+            </ul>
+
+            <h3>Performance</h3>
+            <ul>
+                <li><a href="#slow-builds">Slow Builds</a></li>
+                <li><a href="#file-size">CSS File Size</a></li>
+            </ul>
+
+            <h3>Migration</h3>
+            <ul>
+                <li><a href="#from-tailwind">From Tailwind</a></li>
+                <li><a href="#from-bootstrap">From Bootstrap</a></li>
+            </ul>
+        </aside>
+
+        <main class="flex-1 py-10 pl-12 min-w-0">
+
+            <div class="mb-16 pb-8 border-b border-gray-200">
+                <span
+                    class="text-indigo-600 font-bold tracking-wider text-xs uppercase mb-3 block">Troubleshooting</span>
+                <h1 class="mb-4">FAQ & Common Issues</h1>
+                <p class="text-xl text-gray-500 leading-relaxed max-w-3xl">
+                    Solutions to the most common problems, performance optimization tips, and migration guides.
+                </p>
+            </div>
+
+            <!-- COMMON ISSUES -->
+            <section id="css-not-updating" class="anchor-offset mb-16">
+                <h2>🔧 Common Issues</h2>
+
+                <div class="faq-item">
+                    <h4>Problem: CSS Not Updating After Changes</h4>
+                    <p><strong>Symptoms:</strong> You add a new class like <code>bg-red-500</code> to your HTML, but it
+                        doesn't show up in the browser.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Make sure <code>tailpyscss watch</code> is running.</li>
+                        <li>Check the terminal for build errors.</li>
+                        <li>Hard refresh your browser (<code>Ctrl+Shift+R</code> on Windows/Linux,
+                            <code>Cmd+Shift+R</code> on Mac).
+                        </li>
+                        <li>Clear browser cache if the issue persists.</li>
+                    </ol>
+                </div>
+
+                <div class="faq-item" id="classes-not-generating">
+                    <h4>Problem: Utility Classes Not Generating</h4>
+                    <p><strong>Symptoms:</strong> You use <code>text-primary</code> but it doesn't exist in the CSS.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Check <code>tailpy_config.py</code> - does <code>primary</code> exist in the
+                            <code>colors</code> dict?
+                        </li>
+                        <li>Ensure the file containing the class is being scanned (<code>.py</code>, <code>.html</code>,
+                            <code>.js</code>).
+                        </li>
+                        <li>Run <code>tailpyscss build</code> manually to see debug output.</li>
+                    </ol>
+                    <div class="code-window">
+                        <pre class="p-4 text-white font-mono text-sm"># tailpy_config.py
+config = {
+    "colors": {
+        "primary": "#4f46e5",  # Now .text-primary will work
+    }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="faq-item" id="import-errors">
+                    <h4>Problem: ModuleNotFoundError: No module named 'tailpyscss'</h4>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Ensure you're in the correct virtual environment.</li>
+                        <li>Run <code>pip install tailpyscss</code> again.</li>
+                        <li>Check <code>pip list</code> to verify installation.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- PERFORMANCE -->
+            <section id="slow-builds" class="anchor-offset mb-16">
+                <h2>⚡ Performance Optimization</h2>
+
+                <div class="faq-item">
+                    <h4>Problem: Slow Build Times</h4>
+                    <p><strong>Symptoms:</strong> <code>tailpyscss build</code> takes more than 5 seconds.</p>
+                    <p><strong>Solutions:</strong></p>
+                    <ol>
+                        <li><strong>Reduce Scan Scope:</strong> Add <code>.tailpyignore</code> to exclude large
+                            directories:
+                            <div class="code-window">
+                                <pre class="p-4 text-white font-mono text-sm"># .tailpyignore
+__pycache__/
+*.pyc
+venv/
+env/
+.git/
+tests/
+migrations/
+</pre>
+                            </div>
+                        </li>
+                        <li><strong>Use Fewer Dynamic Classes:</strong> Avoid generating thousands of unused color
+                            variants.</li>
+                        <li><strong>Tree Shaking:</strong> Ensure you're using the <code>ui="..."</code> attribute for
+                            components to enable tree shaking.</li>
+                    </ol>
+                </div>
+
+                <div class="faq-item" id="file-size">
+                    <h4>Problem: Large CSS File Size</h4>
+                    <p><strong>Symptoms:</strong> <code>styles.css</code> is over 500KB.</p>
+                    <p><strong>Solutions:</strong></p>
+                    <ol>
+                        <li><strong>Purge Unused Classes:</strong> Make sure only used classes are being scanned.</li>
+                        <li><strong>Built-in Minification:</strong> TailPySCSS automatically minifies CSS when you run
+                            <code>tailpyscss build</code> using LibSass's compressed output style. No external tools
+                            needed!
+                        </li>
+                        <li><strong>Use CDN:</strong> Serve CSS from a CDN with gzip/brotli compression for even smaller
+                            file sizes.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- MIGRATION GUIDES -->
+            <section id="from-tailwind" class="anchor-offset mb-16">
+                <h2>🚀 Migration Guides</h2>
+
+                <h3>Migrating from Tailwind CSS</h3>
+                <p>TailPySCSS utility classes are <strong>95% compatible</strong> with Tailwind. Here are the key
+                    differences:</p>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ What's the Same</h4>
+                    <ul>
+                        <li>Utility classes: <code>p-4</code>, <code>text-center</code>, <code>bg-white</code></li>
+                        <li>Responsive prefixes: <code>md:flex</code>, <code>lg:grid-cols-3</code></li>
+                        <li>Hover states: <code>hover:bg-blue-500</code></li>
+                    </ul>
+                </div>
+
+                <div class="alert-box anti-pattern">
+                    <h4>❌ What's Different</h4>
+                    <ul>
+                        <li><strong>No JIT Compiler:</strong> TailPySCSS uses static generation. Add colors to
+                            <code>tailpy_config.py</code> instead of arbitrary values like <code>bg-[#1da1f2]</code>.
+                        </li>
+                        <li><strong>No <code>@apply</code> in HTML:</strong> Use SCSS files for <code>@apply</code>, not
+                            inline.</li>
+                        <li><strong>Different Config:</strong> Use <code>tailpy_config.py</code> (Python) instead of
+                            <code>tailwind.config.js</code>.
+                        </li>
+                    </ul>
+                </div>
+
+                <h4>Migration Checklist</h4>
+                <ol>
+                    <li>Install TailPySCSS: <code>pip install tailpyscss</code></li>
+                    <li>Run <code>tailpyscss init</code></li>
+                    <li>Port your <code>tailwind.config.js</code> colors/spacing to <code>tailpy_config.py</code></li>
+                    <li>Replace <code>&lt;link&gt;</code> to Tailwind CDN with <code>static/css/styles.css</code></li>
+                    <li>Run <code>tailpyscss build</code></li>
+                </ol>
+            </section>
+
+            <section id="from-bootstrap" class="anchor-offset mb-16">
+                <h3>Migrating from Bootstrap</h3>
+                <p>Bootstrap uses semantic classes. TailPySCSS uses utility classes. You'll need to refactor your HTML.
+                </p>
+
+                <h4>Bootstrap → TailPySCSS Equivalents</h4>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!-- BEFORE (Bootstrap) --&gt;
+&lt;button class="btn btn-primary"&gt;Click Me&lt;/button&gt;
+
+&lt;!-- AFTER (TailPySCSS) --&gt;
+&lt;button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"&gt;Click Me&lt;/button&gt;
+</pre>
+                </div>
+
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!-- BEFORE (Bootstrap) --&gt;
+&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-6"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- AFTER (TailPySCSS) --&gt;
+&lt;div class="max-w-7xl mx-auto px-4"&gt;
+    &lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+        &lt;div&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section id="faq" class="anchor-offset mb-16">
+                <h2>❓ Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h4>Can I use TailPySCSS with React/Vue?</h4>
+                    <p>Technically yes, but it's designed for <strong>Python backends</strong> (Flask, Django). For
+                        React/Vue, stick with Tailwind CSS as it integrates better with Vite/Webpack.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Does it work with Jinja2/Django templates?</h4>
+                    <p>Yes! It scans <code>.html</code> files, so Jinja2 and Django templates work perfectly.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Can I use custom fonts?</h4>
+                    <p>Yes. Import them in your <code>styles/main.scss</code>:
+                    <div class="code-window">
+                        <pre class="p-4 text-white font-mono text-sm">@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+</pre>
+                    </div>
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Is it production-ready?</h4>
+                    <p>Yes. It's been used in production by multiple companies. Just make sure to run
+                        <code>tailpyscss build</code> in your deployment pipeline.
+                    </p>
+                </div>
+            </section>
+
+            <footer class="mt-32 pt-10 border-t border-gray-200 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 TailPySCSS. Still stuck? <a
+                        href="https://github.com/tailpyscss2/tailpyscss-framework/issues"
+                        class="text-indigo-600 hover:underline">Open an issue on GitHub</a>.</p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

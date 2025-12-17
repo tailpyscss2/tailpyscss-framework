@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/tailpyscss2/tailpyscss-framework/main/docs/assets/logos/tailpyscss_logo_snake_wind.png" alt="TailPySCSS Logo" width="200"/>
 </p>
 
-# TailPySCSS v0.5.0: The Frontend Engine
+# TailPySCSS v0.5.3: The Frontend Engine
 
 [![Analysis & Tests](https://github.com/tailpyscss2/tailpyscss-framework/actions/workflows/main.yml/badge.svg)](https://github.com/tailpyscss2/tailpyscss-framework/actions/workflows/main.yml)
 [![PyPI - Version](https://img.shields.io/pypi/v/tailpyscss)](https://pypi.org/project/tailpyscss/)
@@ -15,9 +15,11 @@ TailPySCSS is a **Python-Native CSS Engine**. It gives you the power of utility 
 
 It compiles SCSS to CSS directly in Python. It scans your Python code for usage. It treeshakes unused styles by default.
 
+**📖 [Read the Full Documentation →](https://tailpyscss2.github.io/tailpyscss-framework/)**
+
 ---
 
-## 🔥 Creating UI in Python (New in v0.5.0)
+## 🔥 Creating UI in Python (New in v0.5.0+)
 
 Forget writing HTML classes manually. Use the new **Python Component Library**:
 
@@ -117,6 +119,16 @@ config = {
 
 ---
 
-## 📄 License
+## � Resources
+
+- **📖 [Full Documentation](https://tailpyscss2.github.io/tailpyscss-framework/)** - Comprehensive guides and API reference
+- **🚀 [Quick Start Guide](https://tailpyscss2.github.io/tailpyscss-framework/docs.html)** - Get up and running in 5 minutes
+- **🎨 [Component Showcase](https://tailpyscss2.github.io/tailpyscss-framework/ui.html)** - See all 30+ components
+- **❓ [FAQ & Troubleshooting](https://tailpyscss2.github.io/tailpyscss-framework/troubleshooting.html)** - Common issues and solutions
+- **🐛 [Report Issues](https://github.com/tailpyscss2/tailpyscss-framework/issues)** - Bug reports and feature requests
+
+---
+
+## �📄 License
 MIT License. **100% Open Source.**
 Created by [Abdi Abdikarim](https://github.com/CABDUWAHAAB).

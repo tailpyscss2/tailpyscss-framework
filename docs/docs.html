@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TailPySCSS - The Complete Manual</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        /* === DOCUMENTATION STYLES === */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-top: 4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            line-height: 1.75;
+            color: #4b5563;
+            font-size: 1.05rem;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: #4b5563;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        ol {
+            list-style-type: decimal;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .code-window {
+            background: #111827;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #374151;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        code {
+            background-color: #f3f4f6;
+            color: #db2777;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.9em;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-weight: 500;
+        }
+
+        /* === ALERT BOXES === */
+        .alert-box {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            border-left-width: 4px;
+        }
+
+        /* Best Practice (Green) */
+        .best-practice {
+            background-color: #f0fdf4;
+            border-left-color: #22c55e;
+        }
+
+        .best-practice h4 {
+            color: #166534;
+            margin-top: 0;
+        }
+
+        .best-practice p {
+            color: #15803d;
+        }
+
+        /* Warning (Yellow) */
+        .warning-box {
+            background-color: #fefce8;
+            border-left-color: #eab308;
+        }
+
+        .warning-box h4 {
+            color: #854d0e;
+            margin-top: 0;
+        }
+
+        .warning-box p {
+            color: #a16207;
+        }
+
+        /* Anti-Pattern (Red) */
+        .anti-pattern {
+            background-color: #fef2f2;
+            border-left-color: #ef4444;
+        }
+
+        .anti-pattern h4 {
+            color: #991b1b;
+            margin-top: 0;
+        }
+
+        .anti-pattern p {
+            color: #b91c1c;
+        }
+
+        /* Sidebar Links */
+        aside a {
+            display: block;
+            padding: 0.4rem 0;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.15s ease;
+        }
+
+        aside a:hover {
+            color: #4f46e5;
+        }
+
+        aside h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: #111827;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .anchor-offset {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-dark font-sans leading-normal">
+
+    <!-- Navbar -->
+    <nav ui="navbar">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center px-6 h-full">
+            <div class="nav-brand-group flex items-center gap-3">
+                <a href="index.html"
+                    class="nav-logo flex items-center gap-2 font-bold text-3xl text-gray-900 no-underline">
+                    <img src="assets/logos/tailpyscss_logo_snake_wind.png" alt="Logo" class="w-10 h-10">
+                    TailPySCSS
+                </a>
+                <span
+                    class="text-sm bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full font-bold border border-indigo-100">v0.5.3</span>
+            </div>
+
+            <div class="flex items-center gap-8">
+                <div class="nav-links hidden md:flex items-center gap-6">
+                    <a href="docs.html"
+                        class="active text-xl font-medium text-gray-700 hover:text-indigo-600 transition">Docs</a>
+                    <a href="guides.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Guides</a>
+                    <a href="ui.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Components</a>
+                    <a href="features.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">Features</a>
+                    <a href="reference.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">API</a>
+                    <a href="troubleshooting.html"
+                        class="text-xl font-medium text-gray-600 hover:text-indigo-600 transition">FAQ</a>
+                </div>
+                <div class="h-6 w-px bg-gray-200 hidden md:block"></div>
+                <a href="https://github.com/tailpyscss2/tailpyscss-framework"
+                    class="text-gray-400 hover:text-black transition" aria-label="GitHub">
+                    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Wrapper -->
+    <div class="max-w-7xl mx-auto w-full px-6 flex items-start">
+
+        <!-- Sticky Sidebar Navigation -->
+        <aside ui="sidebar" class="hidden md:block w-64 pt-10 pb-10">
+            <h3>Getting Started</h3>
+            <ul>
+                <li><a href="#introduction">What & Why?</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#cli-guide">CLI User Guide</a></li>
+            </ul>
+
+            <h3>Methodologies</h3>
+            <ul>
+                <li><a href="#methodology-bem">The Pro Way (BEM)</a></li>
+                <li><a href="#methodology-utility">The Rapid Way</a></li>
+                <li><a href="#mixing-approaches">Mixing Approaches</a></li>
+                <li><a href="#anti-patterns">Anti-Patterns</a></li>
+            </ul>
+
+            <h3>Framework Guides</h3>
+            <ul>
+                <li><a href="#guide-flask">Flask</a></li>
+                <li><a href="#guide-django">Django</a></li>
+                <li><a href="#guide-fastapi">FastAPI</a></li>
+                <li><a href="#guide-streamlit">Streamlit</a></li>
+                <li><a href="#guide-html">Plain HTML</a></li>
+            </ul>
+
+            <h3>Advanced</h3>
+            <ul>
+                <li><a href="#scanning-engine">How It Works</a></li>
+                <li><a href="#configuration">Configuration</a></li>
+                <li><a href="#custom-scss">Custom SCSS</a></li>
+                <li><a href="#production">Production Deploy</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Documentation Content -->
+        <main class="flex-1 py-10 pl-12 pr-10 min-w-0">
+
+            <!-- Hero Header -->
+            <div class="mb-16 pb-8 border-b border-gray-200">
+                <span class="text-indigo-600 font-bold tracking-wider text-xs uppercase mb-3 block">Documentation</span>
+                <h1 class="mb-4">The TailPySCSS Bible</h1>
+                <p class="text-xl text-gray-500 leading-relaxed max-w-3xl">
+                    The complete manual for Python developers building production-grade UIs without Node.js.
+                    Master the framework, learn the patterns, and ship beautiful applications.
+                </p>
+                <div class="flex gap-4 mt-6">
+                    <a href="#installation"
+                        class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 transition">Get
+                        Started</a>
+                    <a href="#guide-flask"
+                        class="px-6 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-bold hover:bg-gray-50 transition">Integrations</a>
+                </div>
+            </div>
+
+            <!-- ============================ -->
+            <!-- SECTION: INTRODUCTION -->
+            <!-- ============================ -->
+            <section id="introduction" class="anchor-offset mb-16">
+                <h2>Why TailPySCSS?</h2>
+                <p>
+                    Modern web development is trapped in the JavaScript ecosystem. To style a Python web app, you're
+                    forced to install Node.js, manage npm packages, configure Webpack, and deal with PostCSS.
+                    <strong>This is absurd for backend developers.</strong>
+                </p>
+                <p>
+                    TailPySCSS breaks this dependency chain. It's a pure-Python CSS framework that gives you the power
+                    of utility classes (like Tailwind) and SCSS composition (like Bootstrap), but with zero JavaScript
+                    tooling.
+                </p>
+                <ul class="list-disc ml-6 space-y-2 mt-4">
+                    <li>🚫 <strong>No Node.js</strong>: No <code>npm</code>, no <code>package.json</code>, no
+                        <code>node_modules</code> folder weighing 300MB.
+                    </li>
+                    <li>⚡ <strong>Zero Runtime</strong>: It's a build-time tool. Scans your Python/HTML files and
+                        generates static CSS.</li>
+                    <li>🐍 <strong>Framework Agnostic</strong>: Works with Flask, Django, FastAPI, Streamlit, or even
+                        static HTML.</li>
+                    <li>🎨 <strong>SCSS Power</strong>: Built on LibSass. Use variables, nesting, mixins, and the full
+                        power of SCSS.</li>
+                    <li>🌲 <strong>Tree Shaking</strong>: Only generates CSS for classes you actually use.</li>
+                </ul>
+            </section>
+
+            <!-- ============================ -->
+            <!-- SECTION: INSTALLATION -->
+            <!-- ============================ -->
+            <section id="installation" class="anchor-offset mb-16">
+                <h2>Installation</h2>
+                <p>TailPySCSS is distributed via PyPI. Install it in your virtual environment:</p>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm leading-relaxed">$ pip install tailpyscss</pre>
+                </div>
+
+                <p>Verify the installation:</p>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">$ tailpyscss --version
+tailpyscss, version 0.5.3</pre>
+                </div>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ Best Practice: Virtual Environments</h4>
+                    <p>Always use a virtual environment (<code>venv</code> or <code>conda</code>) to isolate project
+                        dependencies. This prevents version conflicts across projects.</p>
+                </div>
+            </section>
+
+            <!-- ============================ -->
+            <!-- SECTION: CLI GUIDE -->
+            <!-- ============================ -->
+            <section id="cli-guide" class="anchor-offset mb-16">
+                <h2>CLI User Guide</h2>
+                <p>The TailPySCSS CLI has three essential commands. Understanding each is critical to a smooth workflow.
+                </p>
+
+                <!-- Command: init -->
+                <div class="mb-10">
+                    <h3 class="text-indigo-600">Command: <code>tailpyscss init</code></h3>
+                    <p>Run this <strong>once</strong> in your project root. It scaffolds the directory structure and
+                        creates configuration files.</p>
+                    <div class="code-window">
+                        <pre class="p-4 text-white font-mono text-sm">$ tailpyscss init
+[*] Created static/css/
+[*] Created styles/main.scss
+[*] Created tailpy_config.py
+✓ Initialization complete!</pre>
+                    </div>
+
+                    <h4>What Gets Created?</h4>
+                    <ul class="list-disc ml-6">
+                        <li><code>static/css/styles.css</code> - The generated CSS output (served to your app).</li>
+                        <li><code>styles/main.scss</code> - Your custom SCSS entry point.</li>
+                        <li><code>tailpy_config.py</code> - Configuration file (colors, spacing, screens).</li>
+                    </ul>
+
+                    <div class="alert-box warning-box">
+                        <h4>⚠️ Warning: Running Init Multiple Times</h4>
+                        <p>Running <code>init</code> again will overwrite <code>styles/main.scss</code> and
+                            <code>tailpy_config.py</code>. Always back up custom code first!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Command: watch -->
+                <div class="mb-10">
+                    <h3 class="text-indigo-600">Command: <code>tailpyscss watch</code></h3>
+                    <p>Use this during <strong>development</strong>. It watches your project for file changes and
+                        rebuilds CSS automatically (Hot Reloading).</p>
+                    <div class="code-window">
+                        <pre class="p-4 text-white font-mono text-sm">$ tailpyscss watch
+[*] Watching for changes in .py, .html, .scss files...
+[+] Rebuilt CSS in 0.03s
+[*] Detected change in app.py
+[+] Rebuilt CSS in 0.02s</pre>
+                    </div>
+
+                    <h4>How It Works</h4>
+                    <ol class="list-decimal ml-6">
+                        <li>Monitors all <code>.py</code>, <code>.html</code>, and <code>.scss</code> files.</li>
+                        <li>On change, it rescans for utility classes and reruns the SCSS compiler.</li>
+                        <li>Outputs updated <code>styles.css</code>.</li>
+                    </ol>
+
+                    <div class="alert-box best-practice">
+                        <h4>✅ Best Practice: Keep Watch Running</h4>
+                        <p>Run <code>watch</code> in a dedicated terminal window. This ensures you always see your CSS
+                            changes reflected instantly.</p>
+                    </div>
+                </div>
+
+                <!-- Command: build -->
+                <div class="mb-10">
+                    <h3 class="text-indigo-600">Command: <code>tailpyscss build</code></h3>
+                    <p>Use this for <strong>production deployments</strong>. It performs a one-time optimized build
+                        without watching.</p>
+                    <div class="code-window">
+                        <pre class="p-4 text-white font-mono text-sm">$ tailpyscss build
+Tree Shaking Active: Found 42 contexts
+Build complete. Output: static/css/styles.css</pre>
+                    </div>
+
+                    <h4>When to Use This</h4>
+                    <ul class="list-disc ml-6">
+                        <li>In your Dockerfile (during the build step).</li>
+                        <li>In CI/CD pipelines (GitHub Actions, GitLab CI).</li>
+                        <li>Before committing to version control (to ensure CSS is up-to-date).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ============================ -->
+            <!-- SECTION: METHODOLOGIES -->
+            <!-- ============================ -->
+            <section id="methodology-bem" class="anchor-offset mb-16">
+                <h2>Methodology: The Pro Way (BEM + Utilities)</h2>
+                <p>
+                    For <strong>scalable, maintainable projects</strong>, we recommend the <strong>BEM (Block Element
+                        Modifier)</strong> methodology combined with utility classes for modifiers.
+                </p>
+
+                <h3>What is BEM?</h3>
+                <p>BEM is a naming convention for CSS classes that enforces semantic structure:</p>
+                <ul class="list-disc ml-6">
+                    <li><strong>Block</strong>: A standalone component (<code>.card</code>).</li>
+                    <li><strong>Element</strong>: A part of the block (<code>.card__header</code>,
+                        <code>.card__body</code>).
+                    </li>
+                    <li><strong>Modifier</strong>: A variation of the block (<code>.card--featured</code>).</li>
+                </ul>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ Best Practice: BEM for Structure, Utilities for State</h4>
+                    <p>Use BEM classes to define the <strong>structure</strong> of your component (layout, hierarchy).
+                        Use utility classes for <strong>state</strong> (colors, spacing, typography).</p>
+                </div>
+
+                <h3>Example: Clean Card Component</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-sm uppercase font-bold text-gray-500">HTML (Readable)</h4>
+                        <div class="code-window">
+                            <pre class="p-4 text-white font-mono text-sm">&lt;div class="card card--featured"&gt;
+    &lt;div class="card__header"&gt;
+        &lt;h2 class="text-xl font-bold text-gray-900"&gt;
+            Article Title
+        &lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class="card__body"&gt;
+        &lt;p class="text-gray-600"&gt;
+            This is a clean, readable structure.
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card__footer"&gt;
+        &lt;button class="bg-indigo-600 text-white px-4 py-2 rounded"&gt;
+            Read More
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-sm uppercase font-bold text-gray-500">SCSS (styles/_components.scss)</h4>
+                        <div class="code-window">
+                            <pre class="p-4 text-white font-mono text-sm">.card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden;
+
+    &--featured {
+        border: 2px solid #4f46e5;
+    }
+
+    &__header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    &__body {
+        padding: 1.5rem;
+    }
+
+    &__footer {
+        padding: 1rem 1.5rem;
+        background: #f9fafb;
+    }
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Why This Works</h3>
+                <ul class="list-disc ml-6">
+                    <li><strong>Readable HTML</strong>: At a glance, you understand the component hierarchy.</li>
+                    <li><strong>Scoped Styles</strong>: All <code>.card</code> styles are isolated in one SCSS block.
+                    </li>
+                    <li><strong>Reusability</strong>: The <code>.card</code> can be reused across the app.</li>
+                    <li><strong>Utilities for Flexibili ty</strong>: You still get to use <code>text-xl</code>,
+                        <code>font-bold</code>, etc. for quick tweaks.
+                    </li>
+                </ul>
+            </section>
+
+            <section id="methodology-utility" class="anchor-offset mb-16">
+                <h2>Methodology: The Rapid Way (100% Utility Classes)</h2>
+                <p>
+                    For prototypes, dashboards, or simple one-off pages, you can skip SCSS entirely and use <strong>only
+                        utility classes</strong>.
+                </p>
+
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!-- Utility-Only Approach --&gt;
+&lt;div class="bg-white rounded-lg shadow p-6"&gt;
+    &lt;h2 class="text-2xl font-bold text-gray-900 mb-4"&gt;Quick Prototype&lt;/h2&gt;
+    &lt;p class="text-gray-600 mb-6"&gt;Built in 5 minutes.&lt;/p&gt;
+    &lt;button class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition"&gt;
+        Click Me
+    &lt;/button&gt;
+&lt;/div&gt;</pre>
+                </div>
+
+                <div class="alert-box warning-box">
+                    <h4>⚠️ Warning: Readability at Scale</h4>
+                    <p>This approach works great for small pages. But for complex UIs with 20+ components, it becomes
+                        <strong>unmaintainable</strong>. You'll end up with 50-class divs that are impossible to debug.
+                    </p>
+                </div>
+
+                <h3>When to Use Utility-Only</h3>
+                <ul class="list-disc ml-6">
+                    <li>Admin dashboards (internal tools).</li>
+                    <li>Landing pages (one-off marketing pages).</li>
+                    <li>Prototypes (testing ideas quickly).</li>
+                </ul>
+            </section>
+
+            <section id="mixing-approaches" class="anchor-offset mb-16">
+                <h2>Mixing Approaches: BEM + UI Components + Utilities</h2>
+                <p>
+                    The ultimate workflow combines <strong>all three</strong>: BEM for custom components,
+                    <code>ui="..."</code> for framework components, and utilities for modifiers.
+                </p>
+
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!-- Hybrid Approach --&gt;
+&lt;div class="profile-card"&gt;
+    &lt;!-- Framework Component --&gt;
+    &lt;button ui="button" class="bg-indigo-600 text-white"&gt;Follow&lt;/button&gt;
+    
+    &lt;!-- BEM Component --&gt;
+    &lt;div class="profile-card__avatar"&gt;
+        &lt;img src="user.jpg" class="w-16 h-16 rounded-full"&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Utility Classes --&gt;
+    &lt;h3 class="text-lg font-bold text-gray-900"&gt;John Doe&lt;/h3&gt;
+    &lt;p class="text-sm text-gray-600"&gt;Software Engineer&lt;/p&gt;
+&lt;/div&gt;</pre>
+                </div>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ Best Practice: Use What Fits</h4>
+                    <p>Don't be dogmatic. Use BEM for complex components, framework components where they fit, and
+                        utilities everywhere else.</p>
+                </div>
+            </section>
+
+            <section id="anti-patterns" class="anchor-offset mb-16">
+                <h2>🚫 Anti-Patterns to Avoid</h2>
+                <p>Learn from these common mistakes to keep your codebase clean.</p>
+
+                <div class="alert-box anti-pattern">
+                    <h4>❌ Anti-Pattern #1: The "Div Soup"</h4>
+                    <p>Using utility classes to build deeply nested layouts without any semantic naming. This is
+                        debugging hell.</p>
+                </div>
+
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!-- BAD: What does this even do? --&gt;
+&lt;div class="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow"&gt;
+    &lt;div class="flex items-center gap-4"&gt;
+        &lt;div class="w-12 h-12 bg-indigo-600 rounded-full"&gt;&lt;/div&gt;
+        &lt;div class="flex flex-col"&gt;
+            &lt;div class="text-lg font-bold"&gt;?????&lt;/div&gt;
+            &lt;div class="text-sm text-gray-600"&gt;?????&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+                </div>
+
+                <div class="alert-box anti-pattern">
+                    <h4>❌ Anti-Pattern #2: Ignoring SCSS</h4>
+                    <p>TailPySCSS gives you the full power of SCSS. Use it! Don't be afraid to write actual CSS for
+                        animations, transitions, or complex selectors.</p>
+                </div>
+
+                <div class="alert-box anti-pattern">
+                    <h4>❌ Anti-Pattern #3: Not Using <code>tailpy_config.py</code></h4>
+                    <p>Hardcoding colors like <code>#4f46e5</code> in your HTML instead of defining them in
+                        <code>tailpy_config.py</code> as <code>primary</code>. This makes theming impossible.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============================ -->
+            <!-- SECTION: FRAMEWORK INTEGRATIONS -->
+            <!-- ============================ -->
+            <section id="guide-flask" class="anchor-offset mb-16">
+                <h2>🌶️ Integration: Flask</h2>
+                <p>Flask works out-of-the-box with TailPySCSS. No configuration needed—just point your templates at the
+                    generated CSS.</p>
+
+                <h3>Step 1: Directory Structure</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">my_flask_app/
+├── app.py
+├── templates/
+│   ├── base.html
+│   └── index.html
+├── static/
+│   └── css/
+│       └── styles.css  &lt;-- TailPySCSS outputs here
+├── styles/
+│   └── main.scss       &lt;-- Your custom SCSS
+└── tailpy_config.py</pre>
+                </div>
+
+                <h3>Step 2: Base Template (base.html)</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;{% block title %}My App{% endblock %}&lt;/title&gt;
+    &lt;link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-50"&gt;
+    &lt;nav class="bg-white shadow"&gt;
+        &lt;div class="max-w-7xl mx-auto px-4 py-4"&gt;
+            &lt;a href="/" class="text-xl font-bold text-gray-900"&gt;MyApp&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+    
+    &lt;main class="max-w-7xl mx-auto px-4 py-8"&gt;
+        {% block content %}{% endblock %}
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+
+                <h3>Step 3: Run Flask + Watch</h3>
+                <p>In one terminal, run your Flask app. In another, run <code>tailpyscss watch</code>:</p>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm"># Terminal 1
+$ flask run
+
+# Terminal 2
+$ tailpyscss watch</pre>
+                </div>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ Production Tip: Flask + Docker</h4>
+                    <p>In your Dockerfile, run <code>tailpyscss build</code> before starting the Flask server. This
+                        ensures the CSS is always up-to-date.</p>
+                </div>
+
+                <h3>Production Dockerfile Example</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">FROM python:3.11-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Build CSS
+RUN tailpyscss build
+
+# Run Flask
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "app:app"]</pre>
+                </div>
+            </section>
+
+            <section id="guide-django" class="anchor-offset mb-16">
+                <h2>🎸 Integration: Django</h2>
+                <p>Django requires explicit static file configuration, but once set up, it works seamlessly.</p>
+
+                <h3>Step 1: Configure Static Files (settings.py)</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm"># settings.py
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Where TailPySCSS outputs
+]
+
+# For production (collectstatic)
+STATIC_ROOT = BASE_DIR / "staticfiles"</pre>
+                </div>
+
+                <h3>Step 2: Base Template (base.html)</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">{% load static %}
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;{% block title %}Django App{% endblock %}&lt;/title&gt;
+    &lt;link rel="stylesheet" href="{% static 'css/styles.css' %}"&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-50"&gt;
+    {% block content %}{% endblock %}
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+
+                <h3>Step 3: Production Deployment</h3>
+                <p>Before deploying, run both <code>tailpyscss build</code> and <code>collectstatic</code>:</p>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm"># Build CSS
+$ tailpyscss build
+
+# Collect static files (for Nginx/Apache)
+$ python manage.py collectstatic --noinput</pre>
+                </div>
+
+                <div class="alert-box warning-box">
+                    <h4>⚠️ Common Pitfall: Forgetting `collectstatic`</h4>
+                    <p>In production, Django serves static files from <code>STATIC_ROOT</code>, not
+                        <code>STATICFILES_DIRS</code>. Always run <code>collectstatic</code> after building CSS!
+                    </p>
+                </div>
+            </section>
+
+            <section id="guide-fastapi" class="anchor-offset mb-16">
+                <h2>⚡ Integration: FastAPI</h2>
+                <p>FastAPI doesn't serve static files by default. You need to mount a <code>StaticFiles</code> directory
+                    and use Jinja2 templates.</p>
+
+                <h3>Step 1: Install Dependencies</h3>
+                <div class="code-window">
+                    <pre
+                        class="p-4 text-white font-mono text-sm">$ pip install fastapi uvicorn jinja2 python-multipart</pre>
+                </div>
+
+                <h3>Step 2: App Structure</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">fastapi_app/
+├── main.py
+├── templates/
+│   └── index.html
+├── static/
+│   └── css/
+│       └── styles.css
+└── tailpy_config.py</pre>
+                </div>
+
+                <h3>Step 3: FastAPI App (main.py)</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
+app = FastAPI()
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Setup Jinja2
+templates = Jinja2Templates(directory="templates")
+
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+</pre>
+                </div>
+
+                <h3>Step 4: Template (templates/index.html)</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;FastAPI + TailPySCSS&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/static/css/styles.css"&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-50 p-8"&gt;
+    &lt;h1 class="text-3xl font-bold text-gray-900"&gt;Hello FastAPI!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+
+                <h3>Step 5: Run</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm"># Terminal 1
+$ uvicorn main:app --reload
+
+# Terminal 2
+$ tailpyscss watch</pre>
+                </div>
+            </section>
+
+            <section id="guide-streamlit" class="anchor-offset mb-16">
+                <h2>📊 Integration: Streamlit</h2>
+                <p>Streamlit apps don't support <code>&lt;link&gt;</code> tags natively. Instead, we <strong>inject CSS
+                        directly</strong> using <code>st.markdown</code>.</p>
+
+                <h3>Step 1: Load CSS Helper</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">import streamlit as st
+
+def load_tailpyscss(css_file="static/css/styles.css"):
+    """Inject TailPySCSS styles into Streamlit"""
+    try:
+        with open(css_file, "r") as f:
+            st.markdown(f'&lt;style&gt;{f.read()}&lt;/style&gt;', unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.warning(f"CSS file not found: {css_file}. Run 'tailpyscss build' first!")
+
+# Call at the top of your app
+load_tailpyscss()</pre>
+                </div>
+
+                <h3>Step 2: Use Utility Classes</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">import streamlit as st
+
+load_tailpyscss()
+
+# Custom styled containers
+st.markdown('''
+&lt;div class="bg-white rounded-lg shadow-lg p-6 mb-4"&gt;
+    &lt;h2 class="text-2xl font-bold text-gray-900 mb-2"&gt;Sales Dashboard&lt;/h2&gt;
+    &lt;p class="text-gray-600"&gt;Real-time analytics&lt;/p&gt;
+&lt;/div&gt;
+''', unsafe_allow_html=True)
+
+# Styled metrics grid
+st.markdown('''
+&lt;div class="grid grid-cols-3 gap-4"&gt;
+    &lt;div class="bg-indigo-50 p-4 rounded-lg"&gt;
+        &lt;h3 class="text-indigo-600 font-bold"&gt;Revenue&lt;/h3&gt;
+        &lt;p class="text-2xl font-bold text-gray-900"&gt;$45,231&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+''', unsafe_allow_html=True)</pre>
+                </div>
+
+                <div class="alert-box warning-box">
+                    <h4>⚠️ Limitation: No Interactive Components</h4>
+                    <p>Streamlit's <code>st.button</code> and <code>st.selectbox</code> are pre-styled. You can only
+                        style custom HTML that you inject via <code>st.markdown</code>.</p>
+                </div>
+            </section>
+
+            <section id="guide-html" class="anchor-offset mb-16">
+                <h2>🌐 Integration: Plain HTML</h2>
+                <p>For static sites or vanilla JavaScript apps, just link the generated CSS directly.</p>
+
+                <h3>Step 1: Build CSS</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">$ tailpyscss build
+Build complete. Output: static/css/styles.css</pre>
+                </div>
+
+                <h3>Step 2: Link in HTML</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Static Site&lt;/title&gt;
+    &lt;link rel="stylesheet" href="static/css/styles.css"&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-100 p-8"&gt;
+    &lt;div class="max-w-4xl mx-auto bg-white rounded-lg shadow p-8"&gt;
+        &lt;h1 class="text-3xl font-bold text-gray-900 mb-4"&gt;Welcome&lt;/h1&gt;
+        &lt;p class="text-gray-600"&gt;A simple, beautiful page.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ Pro Tip: Version Your CSS</h4>
+                    <p>For static sites, append a version query string to bust browser cache:</p>
+                    <code>&lt;link rel="stylesheet" href="static/css/styles.css?v=1.0.2"&gt;</code>
+                </div>
+            </section>
+
+            <!-- ============================ -->
+            <!-- SECTION: ADVANCED -->
+            <!-- ============================ -->
+            <section id="scanning-engine" class="anchor-offset mb-16">
+                <h2>How the Scanning Engine Works</h2>
+                <p>TailPySCSS uses a file-based scanner to detect which utility classes you're using. Here's the
+                    process:</p>
+
+                <ol class="list-decimal ml-6 space-y-4">
+                    <li><strong>Scan</strong>: Recursively walks your project directories for <code>.py</code>,
+                        <code>.html</code>, and <code>.js</code> files.
+                    </li>
+                    <li><strong>Extract</strong>: Uses regex to find strings that look like CSS classes
+                        (<code>p-4</code>, <code>text-center</code>, <code>grid-cols-3</code>).</li>
+                    <li><strong>Match</strong>: Checks if these match any available generators (Layout, Spacing, Colors,
+                        Typography, etc.).</li>
+                    <li><strong>Generate SCSS</strong>: Writes SCSS code for <em>only</em> the classes you actually use
+                        (Tree Shaking).</li>
+                    <li><strong>Compile</strong>: LibSass compiles the generated SCSS + your custom SCSS into
+                        <code>styles.css</code>.
+                    </li>
+                </ol>
+
+                <h3>Example: What Gets Scanned</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm"># app.py
+@app.route("/")
+def index():
+    return render_template("index.html", classes="bg-white p-6 rounded-lg")
+
+# Templates will be scanned for: bg-white, p-6, rounded-lg</pre>
+                </div>
+            </section>
+
+            <section id="configuration" class="anchor-offset mb-16">
+                <h2>Configuration Deep Dive</h2>
+                <p>The <code>tailpy_config.py</code> file controls every aspect of CSS generation. It's pure Python, so
+                    you can script it!</p>
+
+                <h3>Full Configuration Example</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm"># tailpy_config.py
+
+config = {
+    # === COLORS ===
+    "colors": {
+        "primary": "#4f46e5",     # .text-primary, .bg-primary
+        "secondary": "#ec4899",
+        "accent": "#f59e0b",
+        "dark": "#111827",
+        "light": "#f9fafb",
+    },
+
+    # === SCREENS ===
+    "screens": {
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1536px",
+    },
+
+    # === SPACING ===
+    "spacing": {
+        "0": "0px",
+        "1": "0.25rem",
+        "2": "0.5rem",
+        "4": "1rem",
+        "6": "1.5rem",
+        "8": "2rem",
+        "12": "3rem",
+        "16": "4rem",
+    },
+}</pre>
+                </div>
+
+                <h3>Dynamic Configuration (Scripted)</h3>
+                <p>Since it's Python, you can generate values dynamically:</p>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm"># Generate spacing scale automatically
+spacing = {}
+for i in range(0, 101, 4):
+    spacing[str(i)] = f"{i * 0.25}rem"
+
+config = {
+    "spacing": spacing  # 0, 4, 8, 12, ... 96, 100
+}</pre>
+                </div>
+            </section>
+
+            <section id="custom-scss" class="anchor-offset mb-16">
+                <h2>Custom SCSS Workflows</h2>
+                <p>TailPySCSS gives you the full power of SCSS. Use it to define reusable components, mixins, and
+                    variables.</p>
+
+                <h3>Example: Using the <code>theme()</code> Function</h3>
+                <p>Access your config values in SCSS using <code>theme()</code>:</p>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">// styles/main.scss
+
+.my-button {
+    background-color: theme('colors.primary');
+    padding: theme('spacing.4');
+    border-radius: 0.5rem;
+    
+    &:hover {
+        background-color: darken(theme('colors.primary'), 10%);
+    }
+}</pre>
+                </div>
+
+                <h3>Importing Custom Files</h3>
+                <p>Organize your SCSS into multiple files and import them:</p>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">// styles/main.scss
+@import "variables";
+@import "components/header";
+@import "components/footer";</pre>
+                </div>
+
+                <div class="alert-box best-practice">
+                    <h4>✅ Best Practice: Partial Files</h4>
+                    <p>Prefix partial files with <code>_</code> (e.g., <code>_variables.scss</code>) so they don't
+                        compile independently.</p>
+                </div>
+            </section>
+
+            <section id="production" class="anchor-offset mb-16">
+                <h2>Production Deployment</h2>
+                <p>For production, always run <code>tailpyscss build</code> in your deployment pipeline.</p>
+
+                <h3>Docker Example (Multi-Stage Build)</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm">FROM python:3.11-slim AS builder
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Build CSS with TailPySCSS
+RUN tailpyscss build
+
+# === PRODUCTION IMAGE ===
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY --from=builder /app /app
+
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "app:app"]</pre>
+                </div>
+
+                <h3>GitHub Actions CI/CD</h3>
+                <div class="code-window">
+                    <pre class="p-4 text-white font-mono text-sm"># .github/workflows/deploy.yml
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - run: pip install -r requirements.txt
+      - run: tailpyscss build
+      
+      - name: Deploy to Production
+        run: |
+          # Your deployment script here</pre>
+                </div>
+            </section>
+
+            <footer class="mt-32 pt-10 border-t border-gray-200 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 TailPySCSS Framework. Built for Python developers who refuse to use Node.js.</p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
